@@ -13,7 +13,7 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
-git add -A
+git init -A
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
