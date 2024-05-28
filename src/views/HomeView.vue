@@ -7,7 +7,7 @@
             <h1 class="fw-bold">您今天喝咖啡了嗎？</h1>
             <p>從農場到您手中，傳遞每一顆咖啡豆的故事<br>
             與我們一起品味咖啡，感受生活的每一個美好瞬間</p>
-            <router-link to="/user/productlist" class="btn btn-outline-light">coffee now</router-link>
+            <router-link to="/user/productlist" class="btn btn-outline-light">coffee shop</router-link>
         </div>
     </header>
     <section class="container py-5 text-center"
