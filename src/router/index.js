@@ -1,25 +1,84 @@
 import { createRouter, createWebHashHistory } from 'vue-router'
-import HomeView from '../views/HomeView.vue'
 
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    component: () => import('../views/HomeView.vue')
   },
   {
-    path: '/about',
-    name: 'about',
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
-    component: () => import(/* webpackChunkName: "about" */ '../views/AboutView.vue')
+    path: '/login',
+    component: () => import('../views/LoginView.vue')
+  },
+  {
+    path: '/dashboard',
+    component: () => import('../views/DashboardView.vue'),
+    children: [
+      {
+        path: 'products',
+        component: () => import('../views/ProductsView.vue')
+      },
+      {
+        path: 'orders',
+        component: () => import('../views/OrdersView.vue')
+      },
+      {
+        path: 'coupons',
+        component: () => import('../views/CouponsView.vue')
+      }
+    ]
+  },
+  {
+    path: '/user',
+    component: () => import('../views/UserBoard.vue'),
+    children: [
+      {
+        path: 'aboutus',
+        component: () => import('../views/UserAboutUs.vue')
+      },
+      {
+        path: 'productlist',
+        component: () => import('../views/UserProductList.vue')
+      },
+      {
+        path: 'qa',
+        component: () => import('../views/UserQ&A.vue')
+      },
+      {
+        path: 'cart',
+        component: () => import('../views/UserCart.vue')
+      },
+      {
+        path: 'product/:productId',
+        component: () => import('../views/UserProduct.vue')
+      },
+      {
+        path: 'favorite',
+        component: () => import('../views/UserFavorite.vue')
+      },
+      {
+        path: 'orderform',
+        component: () => import('../views/UserOrderForm.vue')
+      },
+      {
+        path: 'checkout/:orderId',
+        component: () => import('../views/UserCheckout.vue')
+      },
+      {
+        path: 'orderdone',
+        component: () => import('../views/UserDone.vue')
+      }
+    ]
+  },
+  {
+    path: '/:pathMatch(.*)*', // 404
+    component: () => import('../views/NotFoundView.vue')
   }
 ]
 
 const router = createRouter({
   history: createWebHashHistory(),
-  routes
+  routes,
+  linkActiveClass: 'active'
 })
 
 export default router

@@ -1,0 +1,14 @@
+.favoriteCircle, .cartCircle {
+    height:10px;
+    width:10px;
+    border-radius:16px;
+    display:inline-block;
+    text-align:center;
+    line-height: 16px;
+    font-size:0.1em;
+    color:#2A1B18;
+    background: red;
+    position: relative;
+    top: -22px;
+    left: 12px;
+}
