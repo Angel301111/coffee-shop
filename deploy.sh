@@ -13,7 +13,7 @@ cd dist
 # echo 'www.example.com' > CNAME
 
 git init
-git init -A
+git add .
 git commit -m 'deploy'
 
 # 部署到 https://<USERNAME>.github.io
@@ -23,6 +23,6 @@ git commit -m 'deploy'
 # git push -f git@github.com:<USERNAME>/<REPO>.git master:gh-pages
 # git push -f git@github.com:hsiangfeng/HexfootMusic.git master:gh-pages
 # 除此之外，也可以改走 HTTPS 模式
-git push -f https://github.com/Angel301111/coffee-shop.git master:gh-pages
+git push --set-upstream https://github.com/Angel301111/coffee-shop.git gh-pages
 
 cd -
