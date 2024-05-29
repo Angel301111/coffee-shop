@@ -1,6 +1,6 @@
 <template>
     <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
-    <div class="container vh-100">
+    <div class="container">
       <h2 class="fontSizeM fontSize-md-L text-center mb-3">─ 收藏清單 ─</h2>
       <div v-if="favorite == null || favorite.length == 0">
         <div class="d-flex flex-column align-items-center">

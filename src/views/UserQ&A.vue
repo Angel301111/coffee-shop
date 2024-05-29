@@ -2,7 +2,7 @@
         <header class="p-5 text-center bg header-background">
             <h1 class="display-1 fw-bold">Q & A</h1>
         </header>
-        <section class="container py-5 mb-auto vh-100">
+        <section class="container my-5">
         <div class="row justify-content-center">
             <div class="col-lg-8">
             <h2 class="mb-3">咖啡豆相關</h2>

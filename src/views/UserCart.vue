@@ -1,7 +1,7 @@
 <template>
     <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
-    <div class="container vh-100">
-    <div class="row mt-4 justify-content-center ">
+    <div class="container">
+    <div class="row mt-4 justify-content-center">
         <div class="col-lg-8">
         <template v-if="Array.isArray(cart.carts) && cart.carts[0]">
         <table class="table align-middle">

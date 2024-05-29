@@ -1,10 +1,12 @@
 <template>
+  <div class="sticky-footer">
   <FrountNavbar></FrountNavbar>
-    <div class="container-fluid position-relative">
+    <div class="container-fluid position-relative mb-auto">
       <ToastMessages></ToastMessages>
       <router-view/>
     </div>
-    <FooterView></FooterView>
+    <FooterView ></FooterView>
+  </div>
   </template>
 
 <script>
