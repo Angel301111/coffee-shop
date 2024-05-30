@@ -9,7 +9,7 @@
           </button>
           <router-link class="navbar-brand text-dark" to="/">
           <i class="bi bi-cup-hot-fill pe-2"></i>Coffee shop</router-link>
-      <div class="collapse navbar-collapse" id="navbarSupported">
+      <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarSupported">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item mx-2">
             <router-link class="nav-link" aria-current="page" to="/user/aboutus">關於我們</router-link>
@@ -62,7 +62,7 @@ export default {
       this.$http.get(url).then((res) => {
         this.isLoading = false
         this.cart = res.data.data
-        console.log('getCart:', this.cart)
+        // console.log('FNBgetCart:', this.cart)
       })
     },
     getFavoriteNum () {

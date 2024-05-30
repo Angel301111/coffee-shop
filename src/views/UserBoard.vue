@@ -40,7 +40,7 @@ export default {
       this.$http.get(url).then((res) => {
         this.isLoading = false
         this.cart = res.data.data
-        console.log('getCart:', this.cart)
+        // console.log('userbosrdgetCart:', this.cart)
       })
     },
     getFavoriteNum () {

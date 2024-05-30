@@ -68,6 +68,7 @@ export default {
       this.$http.post(url, cart)
         .then((res) => {
           this.isLoading = false
+          this.emitter.emit('update-cart')
           this.$httpMessageState(res, '加入購物車')
         })
     },

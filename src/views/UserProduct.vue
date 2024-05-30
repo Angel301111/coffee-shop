@@ -135,18 +135,25 @@ export default {
         .then((res) => {
           console.log('cart', res)
           this.isLoading = false
+          this.emitter.emit('update-cart')
           this.$httpMessageState(res, '加入購物車')
         })
     }
   },
-  // 商品規格
   watch: {
-    product: {
+    product: { // 商品規格
       handler (val) {
         const descriptionArr = val.description.split(',')
         this.description = descriptionArr
       },
       deep: true
+    },
+    '$route.params.productId': { // 路由參數
+      handler (newId) {
+        this.id = newId
+        this.getProduct()
+      },
+      immediate: true
     }
   },
   computed: {
@@ -158,7 +165,6 @@ export default {
   created () {
     this.id = this.$route.params.productId
     this.getProducts()
-    this.getProduct()
   }
 }
 </script>

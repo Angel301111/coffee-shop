@@ -80,27 +80,25 @@ export default {
         console.log(this.$route.query.data)
       })
     },
-    // 匯集產品所有類別
+    // 計算產品類別
     sumProductsCategory () {
       this.productsCategory = this.products.reduce((acc, product) => {
         acc[product.category] = (acc[product.category] || 0) + 1
+        acc.All = (acc.All || 0) + 1
         return acc
       }, { All: 0 })
-      const total = Object.values(this.productsCategory).reduce((sum, count) => sum + count, 0)
-      this.productsCategory.All = total
       console.log('productsCategory.All', this.productsCategory.All)
     },
     // 選取產品類別
     selectedCategory (category) {
-      this.selectedTitle = `${category}`
+      this.selectedTitle = category
       console.log('category', category)
       if (category === 'All') {
         this.products = [...this.allProducts]
       } else {
         this.products = this.allProducts.filter((product) => product.category === category)
-        console.log('this.allProducts', this.allProducts)
       }
-      console.log('this.product', this.product)
+      console.log('this.products', this.products)
     },
     addCart (id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
