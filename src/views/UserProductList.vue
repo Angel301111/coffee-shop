@@ -66,6 +66,11 @@ export default {
   inject: ['emitter'],
   methods: {
     getProducts () {
+      const hasFavorite = localStorage.getItem('favorite')
+      if (hasFavorite) {
+        this.favorite = JSON.parse(hasFavorite)
+      }
+      console.log('favorite', this.favorite)
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
       this.isLoading = true
       this.$http.get(url).then((res) => {
@@ -76,8 +81,7 @@ export default {
         if (this.$route.query.data) {
           this.selectedCategory(this.$route.query.data)
         }
-        console.log('products:', res)
-        console.log(this.$route.query.data)
+        // console.log('products:', res)
       })
     },
     // 計算產品類別
@@ -87,7 +91,7 @@ export default {
         acc.All = (acc.All || 0) + 1
         return acc
       }, { All: 0 })
-      console.log('productsCategory.All', this.productsCategory.All)
+      // console.log('productsCategory.All', this.productsCategory.All)
     },
     // 選取產品類別
     selectedCategory (category) {
