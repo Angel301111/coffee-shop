@@ -84,6 +84,7 @@ export default {
         title: '已移除收藏'
       })
       this.emitter.emit('update-favorite')
+      this.getFavorite()
     }
   },
   mounted () {
