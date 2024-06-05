@@ -1,7 +1,7 @@
 import emitter from '@/methods/emitter'
 
-export default function (res, title) { // ajax回來的res來進行判斷
-  if (res.data.success) { // 在更新產品時加入判斷式 判斷更新是否成功
+export default function (res, title) {
+  if (res.data.success) {
     emitter.emit('push-message', {
       style: 'success',
       title: `${title}成功`

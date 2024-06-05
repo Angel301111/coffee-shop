@@ -84,7 +84,7 @@
   </template>
 
 <script>
-import ProductSwiper from '@/components/ProductSwiper.vue'
+import ProductSwiper from '@/components/Front/ProductSwiper.vue'
 
 export default {
   data () {
@@ -104,7 +104,7 @@ export default {
   methods: {
     getProduct () {
       const api = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/product/${this.id}`
-      // this.isLoading = true
+      this.isLoading = true
       this.$http.get(api).then((res) => {
         console.log(res.data)
         this.isLoading = false
@@ -148,7 +148,7 @@ export default {
       },
       deep: true
     },
-    '$route.params.productId': { // 路由參數
+    '$route.params.productId': {
       handler (newId) {
         this.id = newId
         this.getProduct()

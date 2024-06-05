@@ -49,7 +49,7 @@ export default {
   methods: {
     signIn () {
       const url = `${process.env.VUE_APP_API}admin/signin`
-      this.$http.post(url, this.user) // (api路徑,參數(要帶的資料))
+      this.$http.post(url, this.user)
         .then(res => {
           if (res.data.success) {
             const { token, expired } = res.data

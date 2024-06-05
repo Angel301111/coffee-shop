@@ -3,69 +3,69 @@ import { createRouter, createWebHashHistory } from 'vue-router'
 const routes = [
   {
     path: '/',
-    component: () => import('../views/HomeView.vue')
+    component: () => import('../views/Front/HomeView.vue')
   },
   {
     path: '/login',
-    component: () => import('../views/LoginView.vue')
+    component: () => import('../views/Back/LoginView.vue')
   },
   {
     path: '/dashboard',
-    component: () => import('../views/DashboardView.vue'),
+    component: () => import('../views/Back/DashboardView.vue'),
     children: [
       {
         path: 'products',
-        component: () => import('../views/ProductsView.vue')
+        component: () => import('../views/Back/ProductsView.vue')
       },
       {
         path: 'orders',
-        component: () => import('../views/OrdersView.vue')
+        component: () => import('../views/Back/OrdersView.vue')
       },
       {
         path: 'coupons',
-        component: () => import('../views/CouponsView.vue')
+        component: () => import('../views/Back/CouponsView.vue')
       }
     ]
   },
   {
     path: '/user',
-    component: () => import('../views/UserBoard.vue'),
+    component: () => import('../views/Front/UserBoard.vue'),
     children: [
       {
         path: 'aboutus',
-        component: () => import('../views/UserAboutUs.vue')
+        component: () => import('../views/Front/UserAboutUs.vue')
       },
       {
         path: 'productlist',
-        component: () => import('../views/UserProductList.vue')
+        component: () => import('../views/Front/UserProductList.vue')
       },
       {
         path: 'qa',
-        component: () => import('../views/UserQ&A.vue')
+        component: () => import('../views/Front/UserQ&A.vue')
       },
       {
         path: 'cart',
-        component: () => import('../views/UserCart.vue')
+        component: () => import('../views/Front/UserCart.vue')
       },
       {
         path: 'product/:productId',
-        component: () => import('../views/UserProduct.vue')
+        component: () => import('../views/Front/UserProduct.vue')
       },
       {
         path: 'favorite',
-        component: () => import('../views/UserFavorite.vue')
+        component: () => import('../views/Front/UserFavorite.vue')
       },
       {
         path: 'orderform',
-        component: () => import('../views/UserOrderForm.vue')
+        component: () => import('../views/Front/UserOrderForm.vue')
       },
       {
         path: 'checkout/:orderId',
-        component: () => import('../views/UserCheckout.vue')
+        component: () => import('../views/Front/UserCheckout.vue')
       },
       {
         path: 'orderdone',
-        component: () => import('../views/UserDone.vue')
+        component: () => import('../views/Front/UserDone.vue')
       }
     ]
   },

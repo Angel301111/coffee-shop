@@ -11,9 +11,9 @@
 
 <script>
 import emitter from '@/methods/emitter'
-import FrountNavbar from '@/components/FrountNavbar.vue'
+import FrountNavbar from '@/components/Front/FrontNavbar.vue'
 import ToastMessages from '@/components/ToastMessages.vue' // 吐司框框
-import FooterView from '@/components/FooterView.vue'
+import FooterView from '@/components/Front/FooterView.vue'
 export default {
   components: {
     FrountNavbar,
@@ -40,7 +40,6 @@ export default {
       this.$http.get(url).then((res) => {
         this.isLoading = false
         this.cart = res.data.data
-        // console.log('userbosrdgetCart:', this.cart)
       })
     },
     getFavoriteNum () {

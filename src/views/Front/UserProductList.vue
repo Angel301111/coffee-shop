@@ -33,7 +33,7 @@
                           <span class="card-text align-self-center">NT${{ item.price }}</span>
                           <button type="button" class="btn btn-light ms-auto"
                         @click.prevent="addToFavorite(item)">
-                        <i class="bi" :class="favorite.includes(item.id) ? 'bi-heart-fill' : 'bi-heart'"></i>
+                        <i class="bi" :class="favoriteID.includes(item.id) ? 'bi-heart-fill' : 'bi-heart'"></i>
                       </button>
                         <button type="button" class="btn btn-light ms-2"
                         @click.prevent="addCart(item.id)"><i class="bi bi-cart3"></i></button>
@@ -60,17 +60,13 @@ export default {
       selectedTitle: 'All',
       cart: {},
       message: '',
-      favorite: []
+      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
+      favoriteID: JSON.parse(localStorage.getItem('favoriteID')) || []
     }
   },
   inject: ['emitter'],
   methods: {
     getProducts () {
-      const hasFavorite = localStorage.getItem('favorite')
-      if (hasFavorite) {
-        this.favorite = JSON.parse(hasFavorite)
-      }
-      console.log('favorite', this.favorite)
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
       this.isLoading = true
       this.$http.get(url).then((res) => {
@@ -81,7 +77,6 @@ export default {
         if (this.$route.query.data) {
           this.selectedCategory(this.$route.query.data)
         }
-        // console.log('products:', res)
       })
     },
     // 計算產品類別
@@ -122,14 +117,11 @@ export default {
     },
     addToFavorite (item) {
       this.isLoading = true
-      const hasFavorite = localStorage.getItem('favorite')
-      if (hasFavorite) {
-        this.favorite = JSON.parse(hasFavorite)
-        const isSave = this.favorite
-          .map((favorite) => favorite.id)
-          .indexOf(item.id)
+      if (this.favorite) {
+        const isSave = this.favoriteID.indexOf(item.id)
         if (isSave < 0) {
           this.favorite.push(item)
+          this.favoriteID.push(item.id)
           this.isLoading = false
           this.emitter.emit('push-message', {
             style: 'success',
@@ -144,14 +136,16 @@ export default {
         }
       } else {
         this.favorite.push(item)
+        this.favoriteID.push(item.id)
         this.isLoading = false
         this.emitter.emit('push-message', {
           style: 'success',
           title: '已新增至收藏'
         })
       }
-      this.favorite = JSON.stringify(this.favorite)
-      localStorage.setItem('favorite', this.favorite)
+
+      localStorage.setItem('favorite', JSON.stringify(this.favorite))
+      localStorage.setItem('favoriteID', JSON.stringify(this.favoriteID))
       this.emitter.emit('update-favorite')
     }
   },

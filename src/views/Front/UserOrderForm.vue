@@ -58,8 +58,8 @@ export default {
     return {
       product: {},
       isLoading: false,
-      status: { // 加入中圖示
-        loadingItem: '' // 對應選取項目的id
+      status: {
+        loadingItem: ''
       },
       cart: {},
       coupon_code: '',

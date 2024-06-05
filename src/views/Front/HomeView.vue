@@ -44,7 +44,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="../assets/images/home1.jpg"
+                <img src="@/assets/images/home1.jpg"
                 class="img-fluid rounded"
                 data-aos="fade-right"
                 data-aos-duration="2000"
@@ -63,7 +63,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="../assets/images/home2.jpg"
+                <img src="@/assets/images/home2.jpg"
                 class="img-fluid rounded"
                 data-aos="fade-left"
                 data-aos-duration="2000"
@@ -83,7 +83,7 @@
                 </div>
             </div>
             <div class="col-md-6">
-                <img src="../assets/images/home3.jpg"
+                <img src="@/assets/images/home3.jpg"
                 class="img-fluid rounded"
                 data-aos="fade-right"
                 data-aos-duration="2000"
@@ -106,7 +106,7 @@
             >
               <span class="h3">濃郁風味</span><span class="align-text-bottom">—</span> 咖啡豆系列
             </div>
-            <img class="img-fluid" src="../assets/images/home-card1.jpg" alt="濃郁風味" />
+            <img class="img-fluid" src="@/assets/images/home-card1.jpg" alt="濃郁風味" />
           </RouterLink>
           </div>
           <div class="col-md-4 position-relative mb-md-0 mb-3" data-aos="fade-up">
@@ -116,7 +116,7 @@
             >
               <span class="h3">經典設計</span><span class="align-text-bottom">—</span> 咖啡杯系列
             </div>
-            <img class="img-fluid" src="../assets/images/home-card2.jpg" alt="經典設計" />
+            <img class="img-fluid" src="@/assets/images/home-card2.jpg" alt="經典設計" />
           </RouterLink>
           </div>
           <div class="col-md-4 position-relative mb-md-0 mb-3">
@@ -126,7 +126,7 @@
             >
               <span class="h3">精工打造</span><span class="align-text-bottom">—</span> 咖啡用具系列
             </div>
-            <img class="img-fluid" src="../assets/images/home-card3.jpg" alt="精工打造" />
+            <img class="img-fluid" src="@/assets/images/home-card3.jpg" alt="精工打造" />
           </RouterLink>
           </div>
         </div>
@@ -165,9 +165,9 @@
     <FooterView></FooterView>
 </template>
 <script>
-import FrountNavbar from '@/components/FrountNavbar.vue'
-import FooterView from '@/components/FooterView.vue'
-import ProductSwiper from '@/components/ProductSwiper.vue'
+import FrountNavbar from '@/components/Front/FrontNavbar.vue'
+import FooterView from '@/components/Front/FooterView.vue'
+import ProductSwiper from '@/components/Front/ProductSwiper.vue'
 
 export default {
   data () {

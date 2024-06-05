@@ -23,13 +23,11 @@
     </nav>
   </template>
 <script>
-// :pages=" 分頁資訊 "
-// @emitPages="更新頁面事件"
 export default {
-  props: ['pages'], // 從api取回來的分頁資訊
+  props: ['pages'],
   methods: {
     updatePage (page) {
-      this.$emit('emit-pages', page) // ('執行事件的名稱',帶入的頁碼)
+      this.$emit('emit-pages', page)
     }
   }
 }

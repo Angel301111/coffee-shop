@@ -8,7 +8,7 @@
           <span class="navbar-toggler-icon"></span>
           </button>
           <router-link class="navbar-brand text-dark" to="/">
-          <i class="bi bi-cup-hot-fill pe-2"></i>Coffee shop</router-link>
+            <i class="bi bi-cup-hot-fill pe-2"></i>Coffee shop</router-link>
       <div class="collapse navbar-collapse order-1 order-lg-0" id="navbarSupported">
           <ul class="navbar-nav ms-auto mb-2 mb-lg-0">
           <li class="nav-item mx-2">

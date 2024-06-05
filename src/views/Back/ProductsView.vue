@@ -50,9 +50,9 @@
 </template>
 
 <script>
-import ProductModalVue from '@/components/ProductModal.vue'
-import DelModal from '@/components/DelModal.vue'
-import PaginationPageVue from '@/components/PaginationPage.vue'
+import ProductModalVue from '@/components/Back/ProductModal.vue'
+import DelModal from '@/components/Back/DelModal.vue'
+import PaginationPageVue from '@/components/Back/PaginationPage.vue'
 
 export default {
   data () {
@@ -72,29 +72,28 @@ export default {
   },
   inject: ['emitter'],
   methods: {
-    getProducts (page = 1) { // 使用複數形式s 因為列表為多數產品資訊 // 帶入分頁功能加上page預設參數
+    getProducts (page = 1) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
       this.isLoading = true
       this.$http.get(url)
         .then(res => {
           this.isLoading = false
-          // console.log(res.data)
           this.products = res.data.products
           this.pagination = res.data.pagination
           this.currentPage = res.data.pagination.current_page
         })
     },
-    openModal (isNew, item) { // (是不是新的？,如果是編輯的話 將編輯的品項加進來)
+    openModal (isNew, item) {
       if (isNew) {
-        this.tempProduct = {} // 每次打開為空白選單
+        this.tempProduct = {}
       } else {
-        this.tempProduct = { ...item } // 以展開的形式取出item
+        this.tempProduct = { ...item }
       }
-      this.isNew = isNew // 將這個狀態儲存在data 以便日後判斷
-      this.$refs.productModal.showModal() // 彈跳出 Modal框框
+      this.isNew = isNew
+      this.$refs.productModal.showModal()
     },
-    updateProduct (item) { // 更新產品 新增or編輯
-      this.tempProduct = item // modal來的資料先存起來
+    updateProduct (item) {
+      this.tempProduct = item
       // 新增狀態
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
@@ -117,13 +116,12 @@ export default {
     },
     // 開啟delModal
     openDelProductModal (item) {
-      this.tempProduct = { ...item }// 複製item的資料存進tempProduct
+      this.tempProduct = { ...item }
       this.$refs.delModal.showModal()
     },
     delProduct () {
-      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}` // 利用openDelProductModal (item)取得的item得到id
+      const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.$http.delete(url).then((res) => {
-        // console.log(res.data)
         this.$refs.delModal.hideModal()
         this.getProducts(this.currentPage)
         this.$httpMessageState(res, '刪除產品')

@@ -48,7 +48,6 @@
                 />
               </div>
               <img class="img-fluid" :src="tempProduct.imageUrl" alt="" />
-              <!-- 延伸技巧，多圖 -->
               <div class="mt-5" v-if="tempProduct.images">
                 <div v-for="(image, key) in tempProduct.images" class="mb-3 input-group" :key="key">
                   <input
@@ -185,7 +184,6 @@
             class="btn btn-primary"
             @click="$emit('update-product',tempProduct)"
           >確認</button>
-          <!-- 觸發名為'update-product'的元件名稱時，同時將tempProduct向外傳遞 -->
         </div>
       </div>
     </div>
@@ -196,22 +194,22 @@
 import modalMixin from '@/mixins/modalMixin'
 export default {
   props: {
-    product: { // 接收外層tempProduct的資料
-      type: Object, // 預期傳進來的資料為物件形式
-      default () { // 如果傳進來的不是物件形式，則回傳預設值 空物件
+    product: {
+      type: Object,
+      default () {
         return {}
       }
     }
   },
-  watch: { // 因為每次watch監聽product這個props
+  watch: {
     product () {
-      this.tempProduct = this.product // 將外層資料product傳入內層(modal內)的tempProduct
+      this.tempProduct = this.product
     }
   },
   data () {
     return {
       modal: {},
-      tempProduct: {} // 接收外層來的資料 實際在修改資料的值 因為單項數據流 不能直接修改外層tempProduct的值，所以要先存起來後再emmit出去
+      tempProduct: {}
     }
   },
   mixins: [modalMixin]
