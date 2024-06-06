@@ -1,4 +1,4 @@
-# hello-world
+# Coffee-Shop
 
 ## Project setup
 ```
