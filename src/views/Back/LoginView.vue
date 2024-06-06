@@ -28,8 +28,11 @@
             v-model="user.password"
             />
         </div>
-        <div class="text-end mt-4">
-        <button class="btn btn-lg btn-coffee btn-block" type="submit">登入</button>
+        <div class="mt-4 d-flex justify-content-between align-items-center">
+          <router-link to="/" class="login-link">
+            <i class="bi bi-house-fill me-1"></i>回到首頁
+          </router-link>
+        <button class="btn btn-lg btn-coffee" type="submit">登入</button>
     </div>
 </div>
 </form>
