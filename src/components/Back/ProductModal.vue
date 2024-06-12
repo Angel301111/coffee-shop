@@ -193,8 +193,14 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 export default {
+  data () {
+    return {
+      modal: {},
+      tempProduct: {} // 接收外層的資料
+    }
+  },
   props: {
-    product: {
+    product: { // 接收外層的tempProduct
       type: Object,
       default () {
         return {}
@@ -204,12 +210,6 @@ export default {
   watch: {
     product () {
       this.tempProduct = this.product
-    }
-  },
-  data () {
-    return {
-      modal: {},
-      tempProduct: {}
     }
   },
   mixins: [modalMixin]

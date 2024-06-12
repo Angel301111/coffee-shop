@@ -1,10 +1,10 @@
 <template>
-  <div class="row align-items-center login-background bg">
-    <div class="container">
-    <form class="row justify-content-center p-0"
+    <div class="login-background bg vh-100 justify-content-center align-items-center d-flex">
+    <div class="container-fluid">
+    <form class="row justify-content-center"
     @submit.prevent="signIn">
       <div class="col-md-6 p-5 rounded-5 bg-light">
-        <h1 class="h3 mb-3 font-weight-normal">管理員登入</h1>
+        <h1 class="h3 mb-3 font-weight-normal text-center">管理員登入</h1>
           <div class="mb-2">
             <label for="inputEmail" class="sr-only">Email address</label>
               <input

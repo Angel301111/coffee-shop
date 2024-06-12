@@ -4,7 +4,8 @@
     <button class=".btn btn btn-primary" type="butten"
     @click.prevent="openModal(true)">增加一個產品</button>
   </div>
-    <table class="table mt-4">
+  <div class="table-responsive">
+  <table class="table mt-4">
   <thead>
     <tr>
       <th width="200">分類</th>
@@ -41,6 +42,7 @@
     </tr>
   </tbody>
 </table>
+</div>
 <PaginationPageVue :pages="pagination"
     @emit-pages="getProducts"></PaginationPageVue>
 <ProductModalVue ref="productModal"

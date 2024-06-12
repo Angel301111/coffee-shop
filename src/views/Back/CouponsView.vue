@@ -6,7 +6,8 @@
           建立新的優惠券
         </button>
       </div>
-      <table class="table mt-4">
+      <div class="table-responsive">
+      <table class="table mt-4 ">
         <thead>
         <tr>
           <th>名稱</th>
@@ -40,6 +41,7 @@
         </tr>
         </tbody>
       </table>
+    </div>
       <couponModal :coupon="tempCoupon" ref="couponModal"
       @update-coupon="updateCoupon"/>
       <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon"/>

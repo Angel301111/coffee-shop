@@ -1,5 +1,6 @@
 <template>
     <LoadingOverlay :active="isLoading"></LoadingOverlay>
+    <div class="table-responsive">
     <table class="table mt-4">
       <thead>
       <tr>
@@ -50,6 +51,7 @@
         </template>
       </tbody>
     </table>
+  </div>
     <OrderModal :order="tempOrder"
                 ref="orderModal" @update-paid="updatePaid"></OrderModal>
     <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder"></DelModal>

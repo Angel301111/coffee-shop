@@ -32,8 +32,8 @@
           </div>
         </div>
     </section>
-    <section class="container py-5">
-        <div class="row flex-row-reverse gx-5 mb-4">
+    <section class="container py-5 fade-section">
+        <div class="row flex-row-reverse mb-4">
             <div class="col-md-6 d-flex align-items-center ">
             <div data-aos="fade-up-right"
                 data-aos-duration="2000"
@@ -52,9 +52,9 @@
                 alt="info">
             </div>
         </div>
-        <div class="row flex-row gx-5 mb-4">
+        <div class="row flex-row mb-4">
             <div class="col-md-6 d-flex align-items-center ">
-                <div data-aos="fade-up"
+                <div data-aos="fade-up-left"
                 data-aos-duration="2000"
                 data-aos-offset="200">
             <h2>每一口都是匠心綻放的味蕾旅程</h2>
@@ -71,10 +71,10 @@
                 alt="info">
             </div>
         </div>
-        <div class="row flex-row-reverse gx-5">
+        <div class="row flex-row-reverse">
             <div class="col-md-6 d-flex align-items-center ">
                 <div
-                data-aos="fade-up"
+                data-aos="fade-up-right"
                 data-aos-duration="2000"
                 data-aos-offset="200">
             <h2>一杯咖啡，萬種風情</h2>
@@ -140,7 +140,6 @@
                 與您分享我們的最新消息！</h2>
                 <Form v-slot="{ errors }" class="d-center flex-column">
                 <Field
-                  type="email"
                   class="form-control"
                   id="userEmail"
                   placeholder="example@mail.com"
