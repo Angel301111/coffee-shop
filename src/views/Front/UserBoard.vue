@@ -1,6 +1,6 @@
 <template>
   <div class="sticky-footer">
-  <FrountNavbar></FrountNavbar>
+  <FrontNavbar></FrontNavbar>
     <div class="container-fluid position-relative mb-auto">
       <ToastMessages></ToastMessages>
       <router-view/>
@@ -11,12 +11,12 @@
 
 <script>
 import emitter from '@/methods/emitter'
-import FrountNavbar from '@/components/Front/FrontNavbar.vue'
+import FrontNavbar from '@/components/Front/FrontNavbar.vue'
 import ToastMessages from '@/components/ToastMessages.vue' // 吐司框框
 import FooterView from '@/components/Front/FooterView.vue'
 export default {
   components: {
-    FrountNavbar,
+    FrontNavbar: FrontNavbar,
     ToastMessages,
     FooterView
   },

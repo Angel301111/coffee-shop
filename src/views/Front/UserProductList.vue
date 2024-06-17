@@ -4,7 +4,7 @@
         <h1 class="display-1 fw-bold">Products</h1>
     </header>
     <div class="container py-lg-5">
-        <div class="row">
+        <div class="row mx-0">
             <div class="col-lg-3 gy-4">
               <div class="sticky-top">
           <div class="list-group d-md-block border-0">
@@ -20,7 +20,7 @@
           </div>
         </div>
             </div>
-            <div class="row col-lg-9">
+            <div class="row col-lg-9 mx-0">
                 <div class="col-lg-4 g-4"
                 v-for="item in products" :key="item.id">
                       <router-link :to="{ path: `/user/product/${item.id}`}"

@@ -1,7 +1,7 @@
 <template>
   <LoadingOverlay :active="isLoading"></LoadingOverlay>
   <div class="text-end">
-    <button class=".btn btn btn-primary" type="butten"
+    <button class=".btn btn btn-primary" type="button"
     @click.prevent="openModal(true)">增加一個產品</button>
   </div>
   <div class="table-responsive">

@@ -1,5 +1,6 @@
 <template>
-  <FrountNavbar></FrountNavbar>
+  <FrontNavbar></FrontNavbar>
+  <section class="aos-section">
     <header class="home-background bg px-4 py-5 d-flex align-items-center justify-content-center mb-5"
     data-aos="zoom-out"
     data-aos-duration="3000">
@@ -10,6 +11,7 @@
             <router-link to="/user/productlist" class="btn btn-outline-light">coffee shop</router-link>
         </div>
     </header>
+  </section>
     <section class="container py-5 text-center"
     data-aos="zoom-in"
     data-aos-duration="2000"
@@ -32,7 +34,7 @@
           </div>
         </div>
     </section>
-    <section class="container py-5 fade-section">
+    <section class="container py-5 aos-section">
         <div class="row flex-row-reverse mb-4">
             <div class="col-md-6 d-flex align-items-center ">
             <div data-aos="fade-up-right"
@@ -164,7 +166,7 @@
     <FooterView></FooterView>
 </template>
 <script>
-import FrountNavbar from '@/components/Front/FrontNavbar.vue'
+import FrontNavbar from '@/components/Front/FrontNavbar.vue'
 import FooterView from '@/components/Front/FooterView.vue'
 import ProductSwiper from '@/components/Front/ProductSwiper.vue'
 
@@ -175,7 +177,7 @@ export default {
     }
   },
   components: {
-    FrountNavbar,
+    FrontNavbar: FrontNavbar,
     FooterView,
     ProductSwiper
   },
