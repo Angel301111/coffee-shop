@@ -9,6 +9,9 @@
     color:#2A1B18;
     background: red;
     position: relative;
-    top: -22px;
-    left: 12px;
+    top: -7px;
+    left: -5px;
 }
+.backdrop-blur {
+    backdrop-filter: blur(5px);
+  }

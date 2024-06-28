@@ -35,8 +35,8 @@
                 />
               </div>
               <div class="mb-3">
-                <label for="customFile" class="form-label"
-                  >或 上傳圖片
+                <label for="customFile" class="form-label">
+                  或 上傳圖片
                   <i class="fas fa-spinner fa-spin"></i>
                 </label>
                 <input
@@ -49,7 +49,11 @@
               </div>
               <img class="img-fluid" :src="tempProduct.imageUrl" alt="" />
               <div class="mt-5" v-if="tempProduct.images">
-                <div v-for="(image, key) in tempProduct.images" class="mb-3 input-group" :key="key">
+                <div
+                  v-for="(image, key) in tempProduct.images"
+                  class="mb-3 input-group"
+                  :key="'image' + key"
+                >
                   <input
                     type="url"
                     class="form-control form-control"
@@ -59,19 +63,21 @@
                   <button
                     type="button"
                     class="btn btn-outline-danger"
-                    @click="tempProduct.images.splice(key, 1)"
+                    @click.prevent="tempProduct.images.splice(key, 1)"
                   >
                     移除
                   </button>
                 </div>
                 <div
                   v-if="
-                    tempProduct.images[tempProduct.images.length - 1] || !tempProduct.images.length
+                    tempProduct.images[tempProduct.images.length - 1] ||
+                    !tempProduct.images.length
                   "
                 >
                   <button
+                    type="button"
                     class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click="tempProduct.images.push('')"
+                    @click.prevent="tempProduct.images.push('')"
                   >
                     新增圖片
                   </button>
@@ -176,14 +182,20 @@
           </div>
         </div>
         <div class="modal-footer">
-          <button type="button" class="btn btn-outline-secondary" data-bs-dismiss="modal">
+          <button
+            type="button"
+            class="btn btn-outline-secondary"
+            data-bs-dismiss="modal"
+          >
             取消
           </button>
           <button
             type="button"
             class="btn btn-primary"
-            @click="$emit('update-product',tempProduct)"
-          >確認</button>
+            @click="$emit('update-product', tempProduct)"
+          >
+            確認
+          </button>
         </div>
       </div>
     </div>
@@ -193,22 +205,22 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 export default {
-  data () {
+  data() {
     return {
       modal: {},
-      tempProduct: {} // 接收外層的資料
+      tempProduct: {}
     }
   },
   props: {
-    product: { // 接收外層的tempProduct
+    product: {
       type: Object,
-      default () {
+      default() {
         return {}
       }
     }
   },
   watch: {
-    product () {
+    product() {
       this.tempProduct = this.product
     }
   },

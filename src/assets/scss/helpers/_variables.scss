@@ -637,6 +637,7 @@ $h3-font-size:                $font-size-base * 1.75 !default;
 $h4-font-size:                $font-size-base * 1.5 !default;
 $h5-font-size:                $font-size-base * 1.25 !default;
 $h6-font-size:                $font-size-base !default;
+$h7-font-size:                $font-size-base * 0.75 !default;
 // scss-docs-end font-variables
 
 // scss-docs-start font-sizes
@@ -646,7 +647,8 @@ $font-sizes: (
   3: $h3-font-size,
   4: $h4-font-size,
   5: $h5-font-size,
-  6: $h6-font-size
+  6: $h6-font-size,
+  7: $h7-font-size
 ) !default;
 // scss-docs-end font-sizes
 
@@ -1382,7 +1384,7 @@ $accordion-button-color:                  var(--#{$prefix}body-color) !default;
 $accordion-button-bg:                     var(--#{$prefix}accordion-bg) !default;
 $accordion-transition:                    $btn-transition, border-radius .15s ease !default;
 $accordion-button-active-bg:              $secondary;//var(--#{$prefix}primary-bg-subtle) !default;
-$accordion-button-active-color:           $dark;//var(--#{$prefix}primary-text-emphasis) !default;
+$accordion-button-active-color:           $light;//var(--#{$prefix}primary-text-emphasis) !default;
 
 // fusv-disable
 $accordion-button-focus-border-color:     $secondary;//$input-focus-border-color !default; // Deprecated in v5.3.3

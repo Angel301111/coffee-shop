@@ -1,41 +1,58 @@
 <template>
-    <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
-    <div class="my-5 row justify-content-center">
-      <form class="col-md-6" @submit.prevent="payOrder">
-        <h2 class="my-4">訂購明細</h2>
-        <table class="table">
-          <thead>
-          <th>品名</th>
-          <th>數量</th>
-          <th class="text-end">單價</th>
-          </thead>
-          <tbody>
+  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <header class="p-5 text-center bg cart-header-background">
+    <h1 class="display-1 fw-bold text-light">Order</h1>
+  </header>
+  <div class="row justify-content-center">
+    <h2 class="text-center my-4 h3">─ 結帳流程 ─</h2>
+    <form class="col-md-6" @submit.prevent="payOrder">
+      <div class="progress mb-4" style="height: 30px;">
+          <div
+            class="progress-bar bg-secondary"
+            role="progressbar"
+            style="width: 75%"
+            aria-valuenow="75"
+            aria-valuemin="0"
+            aria-valuemax="100"
+          >
+            確認訂購資訊
+          </div>
+        </div>
+      <h3 class="my-4">訂購明細</h3>
+      <table class="table">
+        <thead>
+          <th class="th-layout">品名</th>
+          <th class="th-layout text-end">數量</th>
+          <th class="th-layout text-end">單價</th>
+        </thead>
+        <tbody>
           <tr v-for="item in order.products" :key="item.id">
             <td>{{ item.product.title }}</td>
-            <td>{{ item.qty }}</td>
-            <td class="text-end">{{ item.final_total }}</td>
+            <td class="text-end">{{ item.qty }}</td>
+            <td class="text-end">{{ $filters.currency(item.final_total) }}</td>
           </tr>
-          </tbody>
-          <tfoot>
+        </tbody>
+        <tfoot>
           <tr>
-            <td colspan="2" class="text-end">總計</td>
-            <td class="text-end">{{ order.total }}</td>
+            <td colspan="2" class="text-start">總計</td>
+            <td class="text-end">{{ $filters.currency(order.total) }}</td>
           </tr>
-          </tfoot>
-        </table>
-        <h2 class="my-4">訂購人資料</h2>
-        <table class="table">
-          <tbody>
+        </tfoot>
+      </table>
+
+      <h3 class="my-4">訂購人資料</h3>
+      <table class="table">
+        <tbody>
           <tr>
             <th>姓名</th>
-            <td class="">{{ order.user.name }}</td>
+            <td>{{ order.user.name }}</td>
           </tr>
           <tr>
             <th>收件人電話</th>
             <td>{{ order.user.tel }}</td>
           </tr>
           <tr>
-            <th width="100">Email</th>
+            <th>Email</th>
             <td>{{ order.user.email }}</td>
           </tr>
           <tr>
@@ -49,18 +66,18 @@
               <span v-else class="text-success">付款完成</span>
             </td>
           </tr>
-          </tbody>
-        </table>
-        <div class="text-end" v-if="order.is_paid === false">
-          <button class="btn btn-danger my-3">確認付款</button>
-        </div>
-      </form>
-    </div>
-  </template>
+        </tbody>
+      </table>
+      <div class="text-end" v-if="order.is_paid === false">
+        <button class="btn btn-danger my-3">確認付款</button>
+      </div>
+    </form>
+  </div>
+</template>
 
 <script>
 export default {
-  data () {
+  data() {
     return {
       order: {
         user: {}
@@ -69,33 +86,43 @@ export default {
       isLoading: false
     }
   },
+  inject: ['emitter'],
   methods: {
-    getOrder () {
+    getOrder() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
       this.isLoading = true
       this.$http.get(url).then((res) => {
         this.isLoading = false
-        console.log(res.data)
         this.order = res.data.order
+      }).catch((err) => {
+        this.isLoading = false
+        this.emitter.emit('push-message', {
+          style: 'danger',
+          title: `載入失敗, ${err.message}`
+        })
       })
     },
-    payOrder () {
+    payOrder() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/pay/${this.orderId}`
       this.isLoading = true
       this.$http.post(url).then((res) => {
         this.isLoading = false
-        console.log(res.data)
         if (res.data.success) {
           this.$httpMessageState(res, '感謝您的支持！付款')
           this.getOrder()
           this.$router.push('/user/orderdone')
         }
+      }).catch((err) => {
+        this.isLoading = false
+        this.emitter.emit('push-message', {
+          style: 'danger',
+          title: `付款失敗, ${err.message}`
+        })
       })
     }
   },
-  created () {
+  created() {
     this.orderId = this.$route.params.orderId
-    console.log(this.orderId)
     this.getOrder()
   }
 }

@@ -1,7 +1,7 @@
 <template>
   <div
     class="modal fade"
-    id="delModal"
+    id="cartDelModal"
     tabindex="-1"
     role="dialog"
     aria-labelledby="exampleModalLabel"
@@ -22,8 +22,7 @@
           ></button>
         </div>
         <div class="modal-body">
-          確定要刪除
-          <strong class="text-danger">{{ item.title }}?</strong>
+          確定要刪除全部嗎？
           (刪除後將無法恢復)。
         </div>
         <div class="modal-footer">
@@ -37,7 +36,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click.prevent="$emit('del-item')"
+            @click.prevent="$emit('remove-all')"
           >
             確認刪除
           </button>
@@ -50,9 +49,6 @@
 <script>
 import modalMixin from '@/mixins/modalMixin'
 export default {
-  props: {
-    item: {}
-  },
   data() {
     return {
       modal: ''
