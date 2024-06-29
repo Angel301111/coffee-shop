@@ -6,11 +6,6 @@
 .btn:disabled {
   border: none;
 }
-.card-hover {
-  img:hover {
-    border: 5px dashed gray;
-  }
-}
 .input-border {
   border-bottom-left-radius: 0.375rem;
   border-top-left-radius: 0.375rem;
@@ -22,12 +17,12 @@
   border-top-right-radius: 0.375rem;
   border-bottom-left-radius: 0;
   border-top-left-radius: 0;
-  border-color: #A9A9A9;
+  border-color: #a9a9a9;
 }
-.th-layout{
+.th-layout {
   padding: 0.5rem;
 }
-.product-img{
+.product-img {
   object-fit: cover;
   max-width: 5rem;
   height: 5rem;

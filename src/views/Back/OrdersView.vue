@@ -7,7 +7,7 @@
           <th>購買日期</th>
           <th>Email</th>
           <th>購買款項</th>
-          <th>應付金額</th>
+          <th class="text-nowrap">應付金額</th>
           <th>是否付款</th>
           <th>編輯</th>
         </tr>
@@ -17,7 +17,7 @@
           <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
             <td>{{ $filters.date(item.create_at) }}</td>
             <td><span v-text="item.user.email" v-if="item.user"></span></td>
-            <td>
+            <td class="text-nowrap">
               <ul class="list-unstyled">
                 <li v-for="(product, i) in item.products" :key="'product'+ i">
                   {{ product.product.title }} 數量：{{ product.qty }}
@@ -25,8 +25,8 @@
                 </li>
               </ul>
             </td>
-            <td class="text-right">{{ item.total }}</td>
-            <td>
+            <td class="text-nowrap">{{ item.total }}</td>
+            <td class="text-nowrap">
               <div class="form-check form-switch">
                 <input
                   class="form-check-input"
@@ -41,7 +41,7 @@
                 </label>
               </div>
             </td>
-            <td>
+            <td class="text-nowrap">
               <div class="btn-group">
                 <button
                   type="button"

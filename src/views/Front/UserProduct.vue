@@ -210,11 +210,6 @@ export default {
         this.quantity += 1
       } else if (this.quantity > 1) {
         this.quantity -= 1
-      } else if (action === 'minus') {
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: '商品最低購買數量為1項唷！'
-        })
       }
     },
     addCart(id) {
@@ -231,7 +226,10 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.emitter.emit('update-cart')
-          this.$httpMessageState(res, `${res.data.data.product.title}加入購物車`)
+          this.$httpMessageState(
+            res,
+            `${res.data.data.product.title}加入購物車`
+          )
         })
         .catch((err) => {
           this.isLoading = false

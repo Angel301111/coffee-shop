@@ -24,10 +24,10 @@
             <table class="table align-middle">
               <thead>
                 <tr class="text-center">
-                  <th class="text-nowrap">產品</th>
-                  <th class="text-nowrap">名稱</th>
-                  <th class="text-nowrap">數量</th>
-                  <th class="text-nowrap">單價</th>
+                  <th>產品</th>
+                  <th>名稱</th>
+                  <th>數量</th>
+                  <th>單價</th>
                   <th></th>
                 </tr>
               </thead>
@@ -188,8 +188,7 @@ export default {
         loadingItem: ''
       },
       cart: {},
-      coupon_code: '',
-      quantity: 1
+      coupon_code: ''
     }
   },
   components: {

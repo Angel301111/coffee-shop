@@ -13,29 +13,29 @@
     <table class="table mt-4">
       <thead>
         <tr>
-          <th width="200">分類</th>
-          <th width="400">名稱</th>
-          <th width="120">原價</th>
-          <th width="120">售價</th>
-          <th width="100">啟用</th>
-          <th width="120">編輯</th>
+          <th>分類</th>
+          <th>名稱</th>
+          <th>原價</th>
+          <th>售價</th>
+          <th>啟用</th>
+          <th >編輯</th>
         </tr>
       </thead>
       <tbody>
         <tr v-for="item in products" :key="item.id">
-          <td>{{ item.category }}</td>
-          <td>{{ item.title }}</td>
+          <td class="text-nowrap">{{ item.category }}</td>
+          <td class="text-nowrap">{{ item.title }}</td>
           <td class="text-right">
             {{ $filters.currency(item.origin_price) }}
           </td>
           <td class="text-right">
             {{ $filters.currency(item.price) }}
           </td>
-          <td>
+          <td class="text-nowrap">
             <span class="text-success" v-if="item.is_enabled">啟用</span>
             <span class="text-muted" v-else>未啟用</span>
           </td>
-          <td>
+          <td class="text-nowrap">
             <div class="btn-group">
               <button
                 type="button"

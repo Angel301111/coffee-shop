@@ -16,25 +16,25 @@
           <tr>
             <th>名稱</th>
             <th>優惠碼</th>
-            <th>折扣百分比</th>
+            <th class="text-nowrap">折扣百分比</th>
             <th>到期日</th>
-            <th>是否啟用</th>
+            <th class="text-nowrap">是否啟用</th>
             <th>編輯</th>
           </tr>
         </thead>
         <tbody>
           <tr v-for="(item, key) in coupons" :key="'item'+ key">
-            <td>{{ item.title }}</td>
-            <td>{{ item.code }}</td>
-            <td>{{ item.percent }}%</td>
-            <td>{{ $filters.date(item.due_date) }}</td>
-            <td>
+            <td class="text-nowrap">{{ item.title }}</td>
+            <td class="text-nowrap">{{ item.code }}</td>
+            <td class="text-nowrap">{{ item.percent }}%</td>
+            <td class="text-nowrap">{{ $filters.date(item.due_date) }}</td>
+            <td class="text-nowrap">
               <span v-if="item.is_enabled === 1" class="text-success">
                 啟用
               </span>
               <span v-else class="text-muted">未起用</span>
             </td>
-            <td>
+            <td class="text-nowrap">
               <div class="btn-group">
                 <button
                   type="button"

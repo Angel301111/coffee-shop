@@ -1,18 +1,24 @@
 .breadcrumb-link {
-    text-decoration: none;
-    color: #6c757d;
+  text-decoration: none;
+  color: #6c757d;
 }
 .navtab-link {
-    text-decoration: none;
-    color: #6c757d;
+  text-decoration: none;
+  color: #6c757d;
 }
 .card {
-    text-decoration: none;
+  text-decoration: none;
 }
-.swiper-link, .login-link{
-    text-decoration: none;
-    color: #000;
+.card-hover {
+  img:hover {
+    border: 5px dashed gray;
+  }
 }
-.swiper-pagination-bullet{
-    background-color: gray;
+.swiper-link,
+.login-link {
+  text-decoration: none;
+  color: #000;
+}
+.swiper-pagination-bullet {
+  background-color: gray;
 }
