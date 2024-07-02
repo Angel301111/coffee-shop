@@ -6,7 +6,7 @@
   <div class="container py-lg-5">
     <div class="row mx-0">
       <div class="col-lg-3 gy-4">
-        <div class="sticky-top">
+        <div class="sticky-top" style="top: 96px;">
           <div class="list-group d-md-block border-0">
             <a
               href="#"
