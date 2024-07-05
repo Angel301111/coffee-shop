@@ -126,11 +126,14 @@ export default {
       // 新增狀態
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
+        this.isLoading = true
         this.$http.post(url, { data: this.tempProduct }).then((res) => {
+          this.isLoading = false
           this.$refs.productModal.hideModal()
           this.getProducts()
           this.$httpMessageState(res, '新增產品')
         }).catch((err) => {
+          this.isLoading = false
           this.$refs.productModal.hideModal()
           this.emitter.emit('push-message', {
             style: 'danger',
@@ -140,11 +143,14 @@ export default {
         // 更新狀態
       } else {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
+        this.isLoading = true
         this.$http.put(url, { data: this.tempProduct }).then((res) => {
+          this.isLoading = false
           this.$refs.productModal.hideModal()
           this.getProducts(this.currentPage)
           this.$httpMessageState(res, '更新產品')
         }).catch((err) => {
+          this.isLoading = false
           this.$refs.productModal.hideModal()
           this.emitter.emit('push-message', {
             style: 'danger',

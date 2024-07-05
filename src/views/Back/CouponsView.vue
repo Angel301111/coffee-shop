@@ -77,9 +77,6 @@ export default {
     CouponModal,
     DelModal
   },
-  props: {
-    config: Object
-  },
   inject: ['emitter'],
   data() {
     return {
@@ -96,14 +93,15 @@ export default {
   },
   methods: {
     openCouponModal(isNew, item) {
-      this.isNew = isNew
-      if (this.isNew) {
+      if (isNew) {
         this.tempCoupon = {
           due_date: new Date().getTime() / 1000
         }
+        this.tempCoupon.is_enabled = 0
       } else {
         this.tempCoupon = { ...item }
       }
+      this.isNew = isNew
       this.$refs.couponModal.showModal()
     },
     openDelCouponModal(item) {
@@ -114,7 +112,7 @@ export default {
     getCoupons() {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons`
-      this.$http.get(url, this.tempProduct).then((res) => {
+      this.$http.get(url).then((res) => {
         this.isLoading = false
         this.coupons = res.data.coupons
       }).catch((err) => {
@@ -125,11 +123,12 @@ export default {
         })
       })
     },
-    updateCoupon(tempCoupon) {
+    updateCoupon(item) {
+      this.tempCoupon = item
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`
         this.isLoading = true
-        this.$http.post(url, { data: tempCoupon }).then((res) => {
+        this.$http.post(url, { data: this.tempCoupon }).then((res) => {
           this.isLoading = false
           this.$refs.couponModal.hideModal()
           this.getCoupons()
