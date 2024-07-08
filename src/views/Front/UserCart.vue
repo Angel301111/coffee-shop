@@ -1,5 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" :loader="'dots'" />
   <header class="p-5 text-center bg cart-header-background">
     <h1 class="display-1 fw-bold text-light">My cart</h1>
   </header>
@@ -8,18 +8,18 @@
       <div class="col-lg-10">
         <template v-if="Array.isArray(cart.carts) && cart.carts[0]">
           <h2 class="text-center my-4 h3">─ 結帳流程 ─</h2>
-          <div class="progress mb-4" style="height: 30px;">
-          <div
-            class="progress-bar bg-secondary"
-            role="progressbar"
-            style="width: 25%"
-            aria-valuenow="25"
-            aria-valuemin="0"
-            aria-valuemax="100"
-          >
-            確認產品
+          <div class="progress mb-4" style="height: 30px">
+            <div
+              class="progress-bar bg-secondary"
+              role="progressbar"
+              style="width: 25%"
+              aria-valuenow="25"
+              aria-valuemin="0"
+              aria-valuemax="100"
+            >
+              確認產品
+            </div>
           </div>
-        </div>
           <div class="table-responsive">
             <table class="table align-middle">
               <thead>
@@ -27,7 +27,7 @@
                   <th>產品</th>
                   <th>名稱</th>
                   <th>數量</th>
-                  <th>單價</th>
+                  <th class="text-nowrap">單價</th>
                   <th></th>
                 </tr>
               </thead>
@@ -101,7 +101,7 @@
                       type="button"
                       class="btn btn-outline-danger btn-sm"
                       :disabled="status.loadingItem === item.id"
-                      @click.prevent="removeCartItem(item)"
+                      @click="removeCartItem(item)"
                     >
                       <i class="bi bi-trash-fill"></i>
                     </button>
@@ -114,7 +114,7 @@
                     <button
                       class="btn btn-outline-danger btn-sm"
                       type="button"
-                      @click.prevent="openDelAllModal()"
+                      @click="openDelAllModal()"
                     >
                       全部刪除
                     </button>
@@ -143,7 +143,7 @@
               <button
                 class="btn btn-outline-secondary btn-border"
                 type="button"
-                @click.prevent="addCouponCode"
+                @click="addCouponCode"
               >
                 使用優惠碼
               </button>
@@ -172,7 +172,7 @@
       </div>
     </div>
   </div>
-  <CartDelModal ref="cartdelModal" @remove-all="removeAll"></CartDelModal>
+  <CartDelModal ref="cartdelModal" @remove-all="removeAll" />
 </template>
 
 <script>

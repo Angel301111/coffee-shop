@@ -1,7 +1,9 @@
 <template>
-  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" :loader="'dots'" />
+  <header class="p-5 text-center bg cart-header-background">
+    <h1 class="display-1 fw-bold text-light">Favorite</h1>
+  </header>
   <div class="container mb-4">
-    <h2 class="text-center my-5">─ 收藏清單 ─</h2>
     <div v-if="favorite == null || favorite.length == 0">
       <div class="d-flex flex-column align-items-center">
         <p>目前沒有收藏任何商品唷 ( ºωº )</p>
@@ -12,7 +14,11 @@
       </div>
     </div>
     <div v-else class="row">
-      <div class="col-md-6 col-lg-4 g-4" v-for="item in favorite" :key="item.id">
+      <div
+        class="col-md-6 col-lg-4 g-4"
+        v-for="item in favorite"
+        :key="item.id"
+      >
         <router-link
           class="card border-0 shadow card-hover"
           :to="{ path: `/user/product/${item.id}` }"
@@ -32,14 +38,14 @@
               <button
                 type="button"
                 class="btn btn-light ms-auto"
-                @click.prevent="removeFavorite(item)"
+                @click="removeFavorite(item)"
               >
                 <i class="bi bi-heart-fill"></i>
               </button>
               <button
                 type="button"
                 class="btn btn-light ms-2"
-                @click.prevent="addCart(item.id)"
+                @click="addCart(item.id)"
               >
                 <i class="bi bi-cart3"></i>
               </button>
@@ -82,17 +88,23 @@ export default {
           qty: 1
         }
       }
-      this.$http.post(url, cart).then((res) => {
-        this.isLoading = false
-        this.emitter.emit('update-cart')
-        this.$httpMessageState(res, `${res.data.data.product.title}加入購物車`)
-      }).catch((err) => {
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `加入購物車失敗, ${err.message}`
+      this.$http
+        .post(url, cart)
+        .then((res) => {
+          this.isLoading = false
+          this.emitter.emit('update-cart')
+          this.$httpMessageState(
+            res,
+            `${res.data.data.product.title}加入購物車`
+          )
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `加入購物車失敗, ${err.message}`
+          })
+        })
     },
     removeFavorite(item) {
       this.isLoading = true

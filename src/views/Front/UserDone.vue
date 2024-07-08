@@ -12,14 +12,14 @@
           <button
             type="button"
             class="btn btn-lg btn-outline-dark mb-4"
-            @click.prevent="() => $router.push('/user/productlist')"
+            @click="() => $router.push('/user/productlist')"
           >
             繼續購物
           </button>
         </div>
       </div>
       <div class="col-lg-7">
-        <div class="mb-4 bg done-background"></div>
+        <div class="mb-4 mt-lg-4 bg done-background"></div>
       </div>
     </div>
   </div>

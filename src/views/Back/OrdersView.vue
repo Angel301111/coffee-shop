@@ -1,5 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" />
   <div class="table-responsive">
     <table class="table mt-4">
       <thead>
@@ -13,13 +13,13 @@
         </tr>
       </thead>
       <tbody>
-        <template v-for="(item, key) in orders" :key="'item'+ key">
+        <template v-for="(item, key) in orders" :key="'item' + key">
           <tr v-if="orders.length" :class="{ 'text-secondary': !item.is_paid }">
             <td>{{ $filters.date(item.create_at) }}</td>
             <td><span v-text="item.user.email" v-if="item.user"></span></td>
             <td class="text-nowrap">
               <ul class="list-unstyled">
-                <li v-for="(product, i) in item.products" :key="'product'+ i">
+                <li v-for="(product, i) in item.products" :key="'product' + i">
                   {{ product.product.title }} 數量：{{ product.qty }}
                   {{ product.product.unit }}
                 </li>
@@ -46,14 +46,14 @@
                 <button
                   type="button"
                   class="btn btn-outline-primary btn-sm"
-                  @click.prevent="openModal(false, item)"
+                  @click="openModal(false, item)"
                 >
                   檢視
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-danger btn-sm"
-                  @click.prevent="openDelOrderModal(item)"
+                  @click="openDelOrderModal(item)"
                 >
                   刪除
                 </button>
@@ -64,20 +64,9 @@
       </tbody>
     </table>
   </div>
-  <OrderModal
-    :order="tempOrder"
-    ref="orderModal"
-    @update-paid="updatePaid"
-  ></OrderModal>
-  <DelModal
-    :item="tempOrder"
-    ref="delModal"
-    @del-item="delOrder"
-  ></DelModal>
-  <PaginationPageVue
-    :pages="pagination"
-    @emit-pages="getOrders"
-  ></PaginationPageVue>
+  <OrderModal :order="tempOrder" ref="orderModal" @update-paid="updatePaid" />
+  <DelModal :item="tempOrder" ref="delModal" @del-item="delOrder" />
+  <PaginationPageVue :pages="pagination" @emit-pages="getOrders" />
 </template>
 
 <script>
@@ -106,18 +95,21 @@ export default {
       this.currentPage = page
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/orders?page=${page}`
       this.isLoading = true
-      this.$http.get(url).then((res) => {
-        this.orders = res.data.orders
-        this.pagination = res.data.pagination
-        this.currentPage = res.data.pagination.current_page
-        this.isLoading = false
-      }).catch((err) => {
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `載入失敗, ${err.message}`
+      this.$http
+        .get(url)
+        .then((res) => {
+          this.orders = res.data.orders
+          this.pagination = res.data.pagination
+          this.currentPage = res.data.pagination.current_page
+          this.isLoading = false
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `載入失敗, ${err.message}`
+          })
+        })
     },
     openModal(isNew, item) {
       this.tempOrder = { ...item }
@@ -134,34 +126,40 @@ export default {
       const paid = {
         is_paid: item.is_paid
       }
-      this.$http.put(url, { data: paid }).then((res) => {
-        this.isLoading = false
-        this.getOrders(this.currentPage)
-        this.$httpMessageState(res, '更新付款狀態')
-      }).catch((err) => {
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `更新付款狀態失敗, ${err.message}`
+      this.$http
+        .put(url, { data: paid })
+        .then((res) => {
+          this.isLoading = false
+          this.getOrders(this.currentPage)
+          this.$httpMessageState(res, '更新付款狀態')
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `更新付款狀態失敗, ${err.message}`
+          })
+        })
     },
     delOrder() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/order/${this.tempOrder.id}`
       this.isLoading = true
-      this.$http.delete(url).then((res) => {
-        this.isLoading = false
-        this.$refs.delModal.hideModal()
-        this.getOrders(this.currentPage)
-        this.$httpMessageState(res, '刪除訂單')
-      }).catch((err) => {
-        this.isLoading = false
-        this.$refs.delModal.hideModal()
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `刪除訂單失敗, ${err.message}`
+      this.$http
+        .delete(url)
+        .then((res) => {
+          this.isLoading = false
+          this.$refs.delModal.hideModal()
+          this.getOrders(this.currentPage)
+          this.$httpMessageState(res, '刪除訂單')
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.$refs.delModal.hideModal()
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `刪除訂單失敗, ${err.message}`
+          })
+        })
     }
   },
   created() {

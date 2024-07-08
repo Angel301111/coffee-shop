@@ -1,5 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" :loader="'dots'" />
   <header class="p-5 text-center bg cart-header-background">
     <h1 class="display-1 fw-bold text-light">Order</h1>
   </header>
@@ -18,8 +18,8 @@
             確認訂購資訊
           </div>
         </div>
-      <h3 class="my-4">訂購明細</h3>
-      <table class="table">
+      <h3 class="mt-5">訂購明細</h3>
+      <table class="table mt-3">
         <thead>
           <th class="th-layout">品名</th>
           <th class="th-layout text-end">數量</th>
@@ -40,8 +40,8 @@
         </tfoot>
       </table>
 
-      <h3 class="my-4">訂購人資料</h3>
-      <table class="table">
+      <h3 class="mt-5">訂購人資料</h3>
+      <table class="table mt-3 mb-0">
         <tbody>
           <tr>
             <th>姓名</th>
@@ -69,7 +69,7 @@
         </tbody>
       </table>
       <div class="text-end" v-if="order.is_paid === false">
-        <button class="btn btn-danger my-3">確認付款</button>
+        <button class="btn btn-danger my-4" type="submit">確認付款</button>
       </div>
     </form>
   </div>
@@ -107,11 +107,9 @@ export default {
       this.isLoading = true
       this.$http.post(url).then((res) => {
         this.isLoading = false
-        if (res.data.success) {
-          this.$httpMessageState(res, '感謝您的支持！付款')
-          this.getOrder()
-          this.$router.push('/user/orderdone')
-        }
+        this.$httpMessageState(res, '感謝您的支持！付款')
+        this.getOrder()
+        this.$router.push('/user/orderdone')
       }).catch((err) => {
         this.isLoading = false
         this.emitter.emit('push-message', {

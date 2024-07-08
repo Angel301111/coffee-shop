@@ -21,10 +21,7 @@
             aria-label="Close"
           ></button>
         </div>
-        <div class="modal-body">
-          確定要刪除全部嗎？
-          (刪除後將無法恢復)。
-        </div>
+        <div class="modal-body">確定要刪除全部嗎？ (刪除後將無法恢復)。</div>
         <div class="modal-footer">
           <button
             type="button"
@@ -36,7 +33,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click.prevent="$emit('remove-all')"
+            @click="$emit('remove-all')"
           >
             確認刪除
           </button>

@@ -1,5 +1,5 @@
 <template>
-  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" :loader="'dots'" />
   <div
     class="container py-4"
     data-aos="fade-down"
@@ -75,7 +75,7 @@
         <button
           type="button"
           class="btn btn-outline-danger"
-          @click.prevent="addCart(product.id)"
+          @click="addCart(product.id)"
         >
           加入購物車
         </button>
@@ -144,7 +144,7 @@
       </div>
     </div>
     <h3 class="mb-3">買了此商品的人也買了...</h3>
-    <ProductSwiper :products="recommends"></ProductSwiper>
+    <ProductSwiper :products="recommends" />
   </div>
 </template>
 
@@ -175,9 +175,7 @@ export default {
         .get(api)
         .then((res) => {
           this.isLoading = false
-          if (res.data.success) {
-            this.product = res.data.product
-          }
+          this.product = res.data.product
         })
         .catch((err) => {
           this.isLoading = false

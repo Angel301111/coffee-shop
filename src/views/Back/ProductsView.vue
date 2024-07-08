@@ -1,10 +1,10 @@
 <template>
-  <LoadingOverlay :active="isLoading"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" />
   <div class="text-end">
     <button
       type="button"
       class="btn btn-primary"
-      @click.prevent="openModal(true)"
+      @click="openModal(true)"
     >
       增加一個產品
     </button>
@@ -18,7 +18,7 @@
           <th>原價</th>
           <th>售價</th>
           <th>啟用</th>
-          <th >編輯</th>
+          <th>編輯</th>
         </tr>
       </thead>
       <tbody>
@@ -40,14 +40,14 @@
               <button
                 type="button"
                 class="btn btn-outline-primary btn-sm"
-                @click.prevent="openModal(false, item)"
+                @click="openModal(false, item)"
               >
                 編輯
               </button>
               <button
                 type="button"
                 class="btn btn-outline-danger btn-sm"
-                @click.prevent="openDelProductModal(item)"
+                @click="openDelProductModal(item)"
               >
                 刪除
               </button>
@@ -57,20 +57,13 @@
       </tbody>
     </table>
   </div>
-  <PaginationPageVue
-    :pages="pagination"
-    @emit-pages="getProducts"
-  ></PaginationPageVue>
+  <PaginationPageVue :pages="pagination" @emit-pages="getProducts" />
   <ProductModalVue
     ref="productModal"
     :product="tempProduct"
     @update-product="updateProduct"
-  ></ProductModalVue>
-  <DelModal
-    :item="tempProduct"
-    ref="delModal"
-    @del-item="delProduct"
-  ></DelModal>
+  />
+  <DelModal :item="tempProduct" ref="delModal" @del-item="delProduct" />
 </template>
 
 <script>
@@ -99,18 +92,21 @@ export default {
     getProducts(page = 1) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/products/?page=${page}`
       this.isLoading = true
-      this.$http.get(url).then((res) => {
-        this.isLoading = false
-        this.products = res.data.products
-        this.pagination = res.data.pagination
-        this.currentPage = res.data.pagination.current_page
-      }).catch((err) => {
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `載入失敗, ${err.message}`
+      this.$http
+        .get(url)
+        .then((res) => {
+          this.isLoading = false
+          this.products = res.data.products
+          this.pagination = res.data.pagination
+          this.currentPage = res.data.pagination.current_page
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `載入失敗, ${err.message}`
+          })
+        })
     },
     openModal(isNew, item) {
       if (isNew) {
@@ -127,36 +123,42 @@ export default {
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product`
         this.isLoading = true
-        this.$http.post(url, { data: this.tempProduct }).then((res) => {
-          this.isLoading = false
-          this.$refs.productModal.hideModal()
-          this.getProducts()
-          this.$httpMessageState(res, '新增產品')
-        }).catch((err) => {
-          this.isLoading = false
-          this.$refs.productModal.hideModal()
-          this.emitter.emit('push-message', {
-            style: 'danger',
-            title: `新增產品失敗, ${err.message}`
+        this.$http
+          .post(url, { data: this.tempProduct })
+          .then((res) => {
+            this.isLoading = false
+            this.$refs.productModal.hideModal()
+            this.getProducts()
+            this.$httpMessageState(res, '新增產品')
           })
-        })
+          .catch((err) => {
+            this.isLoading = false
+            this.$refs.productModal.hideModal()
+            this.emitter.emit('push-message', {
+              style: 'danger',
+              title: `新增產品失敗, ${err.message}`
+            })
+          })
         // 更新狀態
       } else {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${item.id}`
         this.isLoading = true
-        this.$http.put(url, { data: this.tempProduct }).then((res) => {
-          this.isLoading = false
-          this.$refs.productModal.hideModal()
-          this.getProducts(this.currentPage)
-          this.$httpMessageState(res, '更新產品')
-        }).catch((err) => {
-          this.isLoading = false
-          this.$refs.productModal.hideModal()
-          this.emitter.emit('push-message', {
-            style: 'danger',
-            title: `更新產品失敗, ${err.message}`
+        this.$http
+          .put(url, { data: this.tempProduct })
+          .then((res) => {
+            this.isLoading = false
+            this.$refs.productModal.hideModal()
+            this.getProducts(this.currentPage)
+            this.$httpMessageState(res, '更新產品')
           })
-        })
+          .catch((err) => {
+            this.isLoading = false
+            this.$refs.productModal.hideModal()
+            this.emitter.emit('push-message', {
+              style: 'danger',
+              title: `更新產品失敗, ${err.message}`
+            })
+          })
       }
     },
     // 開啟delModal
@@ -167,19 +169,22 @@ export default {
     delProduct() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
       this.isLoading = true
-      this.$http.delete(url).then((res) => {
-        this.isLoading = false
-        this.$refs.delModal.hideModal()
-        this.getProducts(this.currentPage)
-        this.$httpMessageState(res, '刪除產品')
-      }).catch((err) => {
-        this.isLoading = false
-        this.$refs.delModal.hideModal()
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `刪除訂單失敗, ${err.message}`
+      this.$http
+        .delete(url)
+        .then((res) => {
+          this.isLoading = false
+          this.$refs.delModal.hideModal()
+          this.getProducts(this.currentPage)
+          this.$httpMessageState(res, '刪除產品')
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.$refs.delModal.hideModal()
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `刪除訂單失敗, ${err.message}`
+          })
+        })
     }
   },
   created() {

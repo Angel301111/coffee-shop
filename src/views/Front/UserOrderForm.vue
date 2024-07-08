@@ -1,12 +1,12 @@
 <template>
-    <header class="p-5 text-center bg cart-header-background">
+  <header class="p-5 text-center bg cart-header-background">
     <h1 class="display-1 fw-bold text-light">Imformation</h1>
   </header>
   <div class="container">
     <div class="row justify-content-center vh-100">
-      <Form class="col-md-6" v-slot="{ errors }" @submit="createOrder">
+      <FormForm class="col-md-6" v-slot="{ errors }" @submit="createOrder">
         <h2 class="text-center my-4 h3">─ 結帳流程 ─</h2>
-        <div class="progress mb-4" style="height: 30px;">
+        <div class="progress mb-4" style="height: 30px">
           <div
             class="progress-bar bg-secondary"
             role="progressbar"
@@ -15,7 +15,7 @@
             aria-valuemin="0"
             aria-valuemax="100"
           >
-          填寫訂購資訊
+            填寫訂購資訊
           </div>
         </div>
         <div class="mb-3">
@@ -23,7 +23,7 @@
             Email
             <span class="text-danger">*</span>
           </label>
-          <Field
+          <FieldField
             id="email"
             name="email"
             type="email"
@@ -32,7 +32,7 @@
             placeholder="請輸入 Email"
             rules="email|required"
             v-model="form.user.email"
-          ></Field>
+          ></FieldField>
           <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
         </div>
 
@@ -41,7 +41,7 @@
             收件人姓名
             <span class="text-danger">*</span>
           </label>
-          <Field
+          <FieldField
             id="name"
             name="姓名"
             type="text"
@@ -50,7 +50,7 @@
             placeholder="請輸入姓名"
             rules="required"
             v-model="form.user.name"
-          ></Field>
+          ></FieldField>
           <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
         </div>
 
@@ -59,7 +59,7 @@
             收件人電話
             <span class="text-danger">*</span>
           </label>
-          <Field
+          <FieldField
             id="tel"
             name="電話"
             type="tel"
@@ -68,7 +68,7 @@
             placeholder="請輸入電話"
             rules="required"
             v-model="form.user.tel"
-          ></Field>
+          ></FieldField>
           <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
         </div>
 
@@ -77,7 +77,7 @@
             收件人地址
             <span class="text-danger">*</span>
           </label>
-          <Field
+          <FieldField
             id="address"
             name="地址"
             type="text"
@@ -86,7 +86,7 @@
             placeholder="請輸入地址"
             rules="required"
             v-model="form.user.address"
-          ></Field>
+          ></FieldField>
           <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
         </div>
 
@@ -106,7 +106,7 @@
         <div class="text-end">
           <button type="submit" class="btn btn-danger">送出訂單</button>
         </div>
-      </Form>
+      </FormForm>
     </div>
   </div>
 </template>

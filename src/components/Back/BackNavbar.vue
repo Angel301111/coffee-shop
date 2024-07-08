@@ -43,9 +43,7 @@ export default {
       this.$http
         .post(api)
         .then((res) => {
-          if (res.data.success) {
-            this.$router.push('/login')
-          }
+          this.$router.push('/login')
         })
         .catch((err) => {
           this.emitter.emit('push-message', {

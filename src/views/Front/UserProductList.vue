@@ -1,12 +1,12 @@
 <template>
-  <LoadingOverlay :active="isLoading" :loader="'dots'"></LoadingOverlay>
+  <LoadingOverlay :active="isLoading" :loader="'dots'" />
   <header class="p-5 text-center header-background bg">
     <h1 class="display-1 fw-bold">Products</h1>
   </header>
   <div class="container py-lg-5">
     <div class="row mx-0">
       <div class="col-lg-3 gy-4">
-        <div class="sticky-top" style="top: 96px;">
+        <div class="sticky-top" style="top: 96px">
           <div class="list-group d-md-block border-0">
             <a
               href="#"
@@ -27,11 +27,11 @@
             :to="{ path: `/user/product/${item.id}` }"
             class="card border-0 shadow card-hover"
           >
-              <img
-                :src="item.imageUrl"
-                class="card-img-top img-fluid object-fit-cover vh-30"
-                :alt="item.title"
-              />
+            <img
+              :src="item.imageUrl"
+              class="card-img-top img-fluid object-fit-cover vh-30"
+              :alt="item.title"
+            />
 
             <div class="card-body">
               <h5 class="card-title">{{ item.title }}</h5>
@@ -43,7 +43,7 @@
                 <button
                   type="button"
                   class="btn btn-light ms-auto"
-                  @click.prevent="addToFavorite(item)"
+                  @click="addToFavorite(item)"
                 >
                   <i
                     class="bi"
@@ -57,7 +57,7 @@
                 <button
                   type="button"
                   class="btn btn-light ms-2"
-                  @click.prevent="addCart(item.id)"
+                  @click="addCart(item.id)"
                 >
                   <i class="bi bi-cart3"></i>
                 </button>
@@ -151,7 +151,10 @@ export default {
           this.isLoading = false
           this.emitter.emit('update-cart')
           // this.$httpMessageState(res, '加入購物車')
-          this.$httpMessageState(res, `${res.data.data.product.title}加入購物車`)
+          this.$httpMessageState(
+            res,
+            `${res.data.data.product.title}加入購物車`
+          )
         })
         .catch((err) => {
           this.isLoading = false

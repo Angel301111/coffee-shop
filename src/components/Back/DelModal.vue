@@ -37,7 +37,7 @@
           <button
             type="button"
             class="btn btn-danger"
-            @click.prevent="$emit('del-item')"
+            @click="$emit('del-item')"
           >
             確認刪除
           </button>

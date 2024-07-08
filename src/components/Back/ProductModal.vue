@@ -47,7 +47,11 @@
                   @change="uploadFile"
                 />
               </div>
-              <img class="img-fluid" :src="tempProduct.imageUrl" alt="" />
+              <img
+                class="img-fluid"
+                :src="tempProduct.imageUrl"
+                :alt="tempProduct.title"
+              />
               <div class="mt-5" v-if="tempProduct.images">
                 <div
                   v-for="(image, key) in tempProduct.images"
@@ -63,7 +67,7 @@
                   <button
                     type="button"
                     class="btn btn-outline-danger"
-                    @click.prevent="tempProduct.images.splice(key, 1)"
+                    @click="tempProduct.images.splice(key, 1)"
                   >
                     移除
                   </button>
@@ -77,7 +81,7 @@
                   <button
                     type="button"
                     class="btn btn-outline-primary btn-sm d-block w-100"
-                    @click.prevent="tempProduct.images.push('')"
+                    @click="tempProduct.images.push('')"
                   >
                     新增圖片
                   </button>

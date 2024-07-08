@@ -64,7 +64,7 @@
           data-aos="fade-right"
           data-aos-duration="2000"
           data-aos-offset="200"
-          alt="info"
+          alt="來自世界各地最優質的咖啡豆"
         />
       </div>
     </div>
@@ -89,7 +89,7 @@
           data-aos="fade-left"
           data-aos-duration="2000"
           data-aos-offset="200"
-          alt="info"
+          alt="專業的烘焙師精心烘焙"
         />
       </div>
     </div>
@@ -114,7 +114,7 @@
           data-aos="fade-right"
           data-aos-duration="2000"
           data-aos-offset="200"
-          alt="info"
+          alt="各式風味的咖啡產品"
         />
       </div>
     </div>
@@ -145,7 +145,7 @@
             <img
               class="img-fluid"
               src="@/assets/images/home-card1.jpg"
-              alt="濃郁風味"
+              alt="濃郁風味的咖啡豆系列"
             />
           </RouterLink>
         </div>
@@ -163,7 +163,7 @@
             <img
               class="img-fluid"
               src="@/assets/images/home-card2.jpg"
-              alt="經典設計"
+              alt="經典設計的咖啡杯系列"
             />
           </RouterLink>
         </div>
@@ -181,7 +181,7 @@
             <img
               class="img-fluid"
               src="@/assets/images/home-card3.jpg"
-              alt="精工打造"
+              alt="精工打造的咖啡用具系列"
             />
           </RouterLink>
         </div>
@@ -199,25 +199,25 @@
             </p>
             <p>與您分享我們的最新消息！</p>
           </h2>
-          <Form v-slot="{ errors }" class="d-center flex-column">
-            <Field
+          <form-form v-slot="{ errors }" class="d-center flex-column">
+            <field-field
               class="form-control"
               id="userEmail"
               placeholder="example@mail.com"
               name="信箱"
               rules="email|required"
               :class="{ 'is-invalid': errors['信箱'] }"
-            ></Field>
+            ></field-field>
             <error-message name="信箱" class="invalid-feedback"></error-message>
             <button
               class="btn btn-dark text-white mt-3 px-md-4"
               type="submit"
               id="subscribeBtn"
-              @click="subscribe()"
+              @click.prevent="subscribe()"
             >
               免費訂閱
             </button>
-          </Form>
+          </form-form>
         </div>
       </div>
     </div>
@@ -227,7 +227,7 @@
       <i class="bi bi-cup-fill pe-2"></i>
       我們的精選
     </h2>
-    <ProductSwiper :products="products"></ProductSwiper>
+    <ProductSwiper :products="products" />
   </section>
   <FooterView />
 </template>

@@ -1,5 +1,5 @@
 <template>
-  <swiper
+  <Swiper
     :breakpoints="{
       768: { slidesPerView: 3 },
       1020: { slidesPerView: 4 }
@@ -13,25 +13,27 @@
       disableOnInteraction: false
     }"
   >
-    <swiper-slide v-for="item in products" :key="item.id">
+    <Swiper-Slide v-for="item in products" :key="item.id">
       <router-link :to="`/user/product/${item.id}`" class="px-3 swiper-link">
         <div class="card-img-top mb-2">
           <img
-            style="height: 150px; object-fit: cover;"
+            style="height: 150px; object-fit: cover"
             class="img-fluid"
             :src="item.imageUrl"
             :alt="item.title"
           />
         </div>
         <div class="card-body mb-4">
-          <div class="d-flex flex-column justify-content-center align-items-center">
+          <div
+            class="d-flex flex-column justify-content-center align-items-center"
+          >
             <h5>{{ item.title }}</h5>
             <p class="m-0">NT$ {{ item.price }}</p>
           </div>
         </div>
       </router-link>
-    </swiper-slide>
-  </swiper>
+    </Swiper-Slide>
+  </Swiper>
 </template>
 
 <script>

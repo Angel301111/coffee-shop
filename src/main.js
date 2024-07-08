@@ -10,9 +10,7 @@ import 'bootstrap'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
-import {
-  Form, Field, ErrorMessage, defineRule, configure
-} from 'vee-validate'
+import { Form, Field, ErrorMessage, defineRule, configure } from 'vee-validate'
 import * as AllRules from '@vee-validate/rules'
 import { localize, setLocale } from '@vee-validate/i18n'
 import zhTW from '@vee-validate/i18n/dist/locale/zh_TW.json'
@@ -22,7 +20,7 @@ import { currency, date } from './methods/filters'
 import $httpMessageState from './methods/PushMessageState'
 
 const app = createApp(App)
-AOS.init({ })
+AOS.init({})
 app.config.globalProperties.$filters = {
   currency,
   date
@@ -40,10 +38,8 @@ setLocale('zh_TW')
 app.config.globalProperties.$httpMessageState = $httpMessageState
 app.use(VueAxios, axios)
 app.use(router)
-app.component('LoadingOverlay', Loading)// 使用（LoadingOverlay這個名稱,將Loading載進來）
-/* eslint-disable */
-app.component('Form', Form)
-app.component('Field', Field)
-/* eslint-disable */
+app.component('LoadingOverlay', Loading)
+app.component('FormForm', Form)
+app.component('FieldField', Field)
 app.component('ErrorMessage', ErrorMessage)
 app.mount('#app')

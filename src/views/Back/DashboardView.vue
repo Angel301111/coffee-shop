@@ -1,8 +1,8 @@
 <template>
-  <navbar-view/>
+  <NavbarView />
   <div class="container-fluid mt-3 position-relative">
-    <ToastMessages/>
-    <router-view/>
+    <ToastMessages />
+    <router-view />
   </div>
 </template>
 
@@ -28,17 +28,20 @@ export default {
     )
     this.$http.defaults.headers.common.Authorization = token
     const api = `${process.env.VUE_APP_API}api/user/check`
-    this.$http.post(api).then((res) => {
-      if (!res.data.success) {
-        this.$router.push('/login')
-      }
-    }).catch((err) => {
-      emitter.emit('push-message', {
-        style: 'danger',
-        title: `載入失敗, ${err.message}`
+    this.$http
+      .post(api)
+      .then((res) => {
+        if (!res.data.success) {
+          this.$router.push('/login')
+        }
       })
-      this.$router.push('/login')
-    })
+      .catch((err) => {
+        emitter.emit('push-message', {
+          style: 'danger',
+          title: `載入失敗, ${err.message}`
+        })
+        this.$router.push('/login')
+      })
   }
 }
 </script>

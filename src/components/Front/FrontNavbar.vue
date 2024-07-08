@@ -1,5 +1,7 @@
 <template>
-  <nav class="navbar navbar-expand-lg bg-light sticky-top bg-opacity-75 backdrop-blur">
+  <nav
+    class="navbar navbar-expand-lg bg-light sticky-top bg-opacity-75 backdrop-blur"
+  >
     <div class="container-fluid">
       <button
         class="navbar-toggler"
@@ -9,6 +11,7 @@
         aria-controls="navbarSupportedContent"
         aria-expanded="false"
         aria-label="Toggle navigation"
+        ref="navbarBtn"
       >
         <span class="navbar-toggler-icon"></span>
       </button>
@@ -26,6 +29,7 @@
               class="nav-link"
               aria-current="page"
               to="/user/aboutus"
+              @click.prevent="closeNav"
             >
               關於我們
             </router-link>
@@ -35,12 +39,18 @@
               class="nav-link"
               aria-current="page"
               to="/user/productlist"
+              @click.prevent="closeNav"
             >
               全部產品
             </router-link>
           </li>
           <li class="nav-item mx-2">
-            <router-link class="nav-link" aria-current="page" to="/user/qa">
+            <router-link
+              class="nav-link"
+              aria-current="page"
+              to="/user/qa"
+              @click.prevent="closeNav"
+            >
               常見問題
             </router-link>
           </li>
@@ -49,7 +59,11 @@
       <div class="navbar">
         <ul class="navbar-nav flex-row">
           <li class="nav-item me-2 me-lg-0 d-flex align-items-center">
-            <router-link class="nav-link d-flex align-items-center" aria-current="page" to="/user/cart">
+            <router-link
+              class="nav-link d-flex align-items-center"
+              aria-current="page"
+              to="/user/cart"
+            >
               <i class="bi bi-cart3"></i>
               <span v-if="cart.carts.length" class="cartCircle d-block"></span>
             </router-link>
@@ -103,6 +117,11 @@ export default {
       if (localStorage.getItem('favorite')) {
         this.favoriteNum = JSON.parse(localStorage.getItem('favorite'))
         this.favoriteNum = this.favoriteNum.length
+      }
+    },
+    closeNav() {
+      if (document.body.offsetWidth < 992) {
+        this.$refs.navbarBtn.click()
       }
     }
   },

@@ -1,11 +1,11 @@
 <template>
   <div>
-    <LoadingOverlay :active="isLoading"></LoadingOverlay>
+    <LoadingOverlay :active="isLoading" />
     <div class="text-end mt-4">
       <button
         type="button"
         class="btn btn-primary"
-        @click.prevent="openCouponModal(true)"
+        @click="openCouponModal(true)"
       >
         建立新的優惠券
       </button>
@@ -23,7 +23,7 @@
           </tr>
         </thead>
         <tbody>
-          <tr v-for="(item, key) in coupons" :key="'item'+ key">
+          <tr v-for="(item, key) in coupons" :key="'item' + key">
             <td class="text-nowrap">{{ item.title }}</td>
             <td class="text-nowrap">{{ item.code }}</td>
             <td class="text-nowrap">{{ item.percent }}%</td>
@@ -39,14 +39,14 @@
                 <button
                   type="button"
                   class="btn btn-outline-primary btn-sm"
-                  @click.prevent="openCouponModal(false, item)"
+                  @click="openCouponModal(false, item)"
                 >
                   編輯
                 </button>
                 <button
                   type="button"
                   class="btn btn-outline-danger btn-sm"
-                  @click.prevent="openDelCouponModal(item)"
+                  @click="openDelCouponModal(item)"
                 >
                   刪除
                 </button>
@@ -56,16 +56,12 @@
         </tbody>
       </table>
     </div>
-    <couponModal
+    <CouponModal
       :coupon="tempCoupon"
       ref="couponModal"
       @update-coupon="updateCoupon"
     />
-    <DelModal
-      :item="tempCoupon"
-      ref="delModal"
-      @del-item="delCoupon"
-    />
+    <DelModal :item="tempCoupon" ref="delModal" @del-item="delCoupon" />
   </div>
 </template>
 
@@ -112,69 +108,81 @@ export default {
     getCoupons() {
       this.isLoading = true
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupons`
-      this.$http.get(url).then((res) => {
-        this.isLoading = false
-        this.coupons = res.data.coupons
-      }).catch((err) => {
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `載入失敗, ${err.message}`
+      this.$http
+        .get(url)
+        .then((res) => {
+          this.isLoading = false
+          this.coupons = res.data.coupons
         })
-      })
+        .catch((err) => {
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `載入失敗, ${err.message}`
+          })
+        })
     },
     updateCoupon(item) {
       this.tempCoupon = item
       if (this.isNew) {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon`
         this.isLoading = true
-        this.$http.post(url, { data: this.tempCoupon }).then((res) => {
-          this.isLoading = false
-          this.$refs.couponModal.hideModal()
-          this.getCoupons()
-          this.$httpMessageState(res, '新增優惠券')
-        }).catch((err) => {
-          this.isLoading = false
-          this.$refs.couponModal.hideModal()
-          this.emitter.emit('push-message', {
-            style: 'danger',
-            title: `新增優惠券失敗, ${err.message}`
+        this.$http
+          .post(url, { data: this.tempCoupon })
+          .then((res) => {
+            this.isLoading = false
+            this.$refs.couponModal.hideModal()
+            this.getCoupons()
+            this.$httpMessageState(res, '新增優惠券')
           })
-        })
+          .catch((err) => {
+            this.isLoading = false
+            this.$refs.couponModal.hideModal()
+            this.emitter.emit('push-message', {
+              style: 'danger',
+              title: `新增優惠券失敗, ${err.message}`
+            })
+          })
       } else {
         const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
         this.isLoading = true
-        this.$http.put(url, { data: this.tempCoupon }).then((res) => {
-          this.isLoading = false
-          this.$refs.couponModal.hideModal()
-          this.getCoupons()
-          this.$httpMessageState(res, '更新優惠券')
-        }).catch((err) => {
-          this.isLoading = false
-          this.$refs.couponModal.hideModal()
-          this.emitter.emit('push-message', {
-            style: 'danger',
-            title: `更新優惠券失敗, ${err.message}`
+        this.$http
+          .put(url, { data: this.tempCoupon })
+          .then((res) => {
+            this.isLoading = false
+            this.$refs.couponModal.hideModal()
+            this.getCoupons()
+            this.$httpMessageState(res, '更新優惠券')
           })
-        })
+          .catch((err) => {
+            this.isLoading = false
+            this.$refs.couponModal.hideModal()
+            this.emitter.emit('push-message', {
+              style: 'danger',
+              title: `更新優惠券失敗, ${err.message}`
+            })
+          })
       }
     },
     delCoupon() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/coupon/${this.tempCoupon.id}`
       this.isLoading = true
-      this.$http.delete(url).then((res) => {
-        this.isLoading = false
-        this.$refs.delModal.hideModal()
-        this.getCoupons()
-        this.$httpMessageState(res, '刪除優惠券')
-      }).catch((err) => {
-        this.$refs.delModal.hideModal()
-        this.isLoading = false
-        this.emitter.emit('push-message', {
-          style: 'danger',
-          title: `刪除優惠券失敗, ${err.message}`
+      this.$http
+        .delete(url)
+        .then((res) => {
+          this.isLoading = false
+          this.$refs.delModal.hideModal()
+          this.getCoupons()
+          this.$httpMessageState(res, '刪除優惠券')
         })
-      })
+        .catch((err) => {
+          this.$refs.delModal.hideModal()
+          this.isLoading = false
+          this.emitter.emit('push-message', {
+            style: 'danger',
+            title: `刪除優惠券失敗, ${err.message}`
+          })
+        })
     }
   },
   created() {
