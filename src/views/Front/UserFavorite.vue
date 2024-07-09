@@ -5,8 +5,8 @@
   </header>
   <div class="container mb-4">
     <div v-if="favorite == null || favorite.length == 0">
-      <div class="d-flex flex-column align-items-center">
-        <p>目前沒有收藏任何商品唷 ( ºωº )</p>
+      <div class="d-flex flex-column align-items-center fs-3 my-5">
+        <p class="">目前沒有收藏任何商品唷 ( ºωº )</p>
         <p>快點去逛逛吧！</p>
         <router-link to="/user/productlist" role="button" class="btn btn-dark">
           繼續購物
@@ -38,14 +38,14 @@
               <button
                 type="button"
                 class="btn btn-light ms-auto"
-                @click="removeFavorite(item)"
+                @click.prevent="removeFavorite(item)"
               >
                 <i class="bi bi-heart-fill"></i>
               </button>
               <button
                 type="button"
                 class="btn btn-light ms-2"
-                @click="addCart(item.id)"
+                @click.prevent="addCart(item.id)"
               >
                 <i class="bi bi-cart3"></i>
               </button>

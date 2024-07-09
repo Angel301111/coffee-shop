@@ -43,7 +43,7 @@
                 <button
                   type="button"
                   class="btn btn-light ms-auto"
-                  @click="addToFavorite(item)"
+                  @click.prevent="addToFavorite(item)"
                 >
                   <i
                     class="bi"
@@ -57,7 +57,7 @@
                 <button
                   type="button"
                   class="btn btn-light ms-2"
-                  @click="addCart(item.id)"
+                  @click.prevent="addCart(item.id)"
                 >
                   <i class="bi bi-cart3"></i>
                 </button>
