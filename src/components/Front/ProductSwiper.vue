@@ -18,7 +18,7 @@
         <div class="card-img-top mb-2">
           <img
             style="height: 150px; object-fit: cover"
-            class="img-fluid"
+            class="w-100"
             :src="item.imageUrl"
             :alt="item.title"
           />

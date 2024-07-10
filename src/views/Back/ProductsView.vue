@@ -161,7 +161,6 @@ export default {
           })
       }
     },
-    // 開啟delModal
     openDelProductModal(item) {
       this.tempProduct = { ...item }
       this.$refs.delModal.showModal()

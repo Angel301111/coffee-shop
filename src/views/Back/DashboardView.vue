@@ -27,9 +27,9 @@ export default {
       '$1'
     )
     this.$http.defaults.headers.common.Authorization = token
-    const api = `${process.env.VUE_APP_API}api/user/check`
+    const url = `${process.env.VUE_APP_API}api/user/check`
     this.$http
-      .post(api)
+      .post(url)
       .then((res) => {
         if (!res.data.success) {
           this.$router.push('/login')
