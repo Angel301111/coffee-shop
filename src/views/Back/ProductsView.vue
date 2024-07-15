@@ -164,6 +164,7 @@ export default {
     openDelProductModal(item) {
       this.tempProduct = { ...item }
       this.$refs.delModal.showModal()
+      
     },
     delProduct() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
