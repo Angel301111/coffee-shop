@@ -114,7 +114,7 @@
                     <button
                       class="btn btn-outline-danger btn-sm"
                       type="button"
-                      @click="openDelAllModal()"
+                      @click="openDelAllModal"
                     >
                       全部刪除
                     </button>
@@ -184,7 +184,6 @@ export default {
       product: {},
       isLoading: false,
       status: {
-        // 商品正在加入中圖示
         loadingItem: ''
       },
       cart: {},

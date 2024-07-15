@@ -31,9 +31,8 @@
             :class="{ 'is-invalid': errors['email'] }"
             placeholder="請輸入 Email"
             rules="email|required"
-            v-model="form.user.email"
-          ></FieldField>
-          <ErrorMessage name="email" class="invalid-feedback"></ErrorMessage>
+            v-model="form.user.email" />
+          <ErrorMessage name="email" class="invalid-feedback" />
         </div>
 
         <div class="mb-3">
@@ -49,9 +48,8 @@
             :class="{ 'is-invalid': errors['姓名'] }"
             placeholder="請輸入姓名"
             rules="required"
-            v-model="form.user.name"
-          ></FieldField>
-          <ErrorMessage name="姓名" class="invalid-feedback"></ErrorMessage>
+            v-model="form.user.name" />
+          <ErrorMessage name="姓名" class="invalid-feedback" />
         </div>
 
         <div class="mb-3">
@@ -67,9 +65,8 @@
             :class="{ 'is-invalid': errors['電話'] }"
             placeholder="請輸入電話"
             rules="required"
-            v-model="form.user.tel"
-          ></FieldField>
-          <ErrorMessage name="電話" class="invalid-feedback"></ErrorMessage>
+            v-model="form.user.tel" />
+          <ErrorMessage name="電話" class="invalid-feedback" />
         </div>
 
         <div class="mb-3">
@@ -85,9 +82,8 @@
             :class="{ 'is-invalid': errors['地址'] }"
             placeholder="請輸入地址"
             rules="required"
-            v-model="form.user.address"
-          ></FieldField>
-          <ErrorMessage name="地址" class="invalid-feedback"></ErrorMessage>
+            v-model="form.user.address" />
+          <ErrorMessage name="地址" class="invalid-feedback" />
         </div>
 
         <div class="mb-3">
@@ -114,13 +110,7 @@
 export default {
   data() {
     return {
-      product: {},
       isLoading: false,
-      status: {
-        loadingItem: ''
-      },
-      cart: {},
-      coupon_code: '',
       form: {
         user: {
           name: '',

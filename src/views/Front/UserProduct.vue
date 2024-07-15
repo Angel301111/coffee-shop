@@ -224,10 +224,7 @@ export default {
         .then((res) => {
           this.isLoading = false
           this.emitter.emit('update-cart')
-          this.$httpMessageState(
-            res,
-            `${res.data.data.product.title}加入購物車`
-          )
+          this.$httpMessageState(res, `${res.data.data.product.title} 加入購物車`)
         })
         .catch((err) => {
           this.isLoading = false
