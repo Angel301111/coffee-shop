@@ -156,7 +156,7 @@ export default {
             this.$refs.productModal.hideModal()
             this.emitter.emit('push-message', {
               style: 'danger',
-              title: `更新產品失敗, ${err.message}`
+              title: `更新產品失敗!, ${err.message}`
             })
           })
       }
@@ -164,7 +164,6 @@ export default {
     openDelProductModal(item) {
       this.tempProduct = { ...item }
       this.$refs.delModal.showModal()
-      
     },
     delProduct() {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/admin/product/${this.tempProduct.id}`
