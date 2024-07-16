@@ -25,8 +25,13 @@ app.config.globalProperties.$filters = {
   date
 }
 Object.keys(AllRules).forEach((rule) => {
-  defineRule(rule, AllRules[rule])
+  if (typeof AllRules[rule] === 'function') {
+    defineRule(rule, AllRules[rule])
+  }
 })
+// Object.keys(AllRules).forEach((rule) => {
+//   defineRule(rule, AllRules[rule])
+// })
 configure({
   generateMessage: localize({ zh_TW: zhTW }),
   validateOnInput: true // 當輸入任何內容直接進行驗證
