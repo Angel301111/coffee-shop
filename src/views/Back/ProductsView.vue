@@ -156,7 +156,7 @@ export default {
             this.$refs.productModal.hideModal()
             this.emitter.emit('push-message', {
               style: 'danger',
-              title: `更新產品失敗!, ${err.message}`
+              title: `更新產品失敗, ${err.message}`
             })
           })
       }
