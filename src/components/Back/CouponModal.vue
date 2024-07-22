@@ -106,7 +106,6 @@ export default {
       due_date: ''
     }
   },
-  emits: ['update-coupon'],
   watch: {
     coupon() {
       this.tempCoupon = this.coupon
@@ -117,7 +116,7 @@ export default {
       this.due_date = dateAndTime[0]
     },
     due_date() {
-      this.tempCoupon.due_date = Math.floor(new Date(this.due_date) / 1000)
+      this.tempCoupon.due_date = new Date(this.due_date) / 1000
     }
   },
   mixins: [modalMixin]

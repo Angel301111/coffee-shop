@@ -91,9 +91,9 @@ export default {
     openCouponModal(isNew, item) {
       if (isNew) {
         this.tempCoupon = {
-          due_date: new Date().getTime() / 1000
+          due_date: new Date().getTime() / 1000,
+          is_enabled: 0
         }
-        this.tempCoupon.is_enabled = 0
       } else {
         this.tempCoupon = { ...item }
       }
