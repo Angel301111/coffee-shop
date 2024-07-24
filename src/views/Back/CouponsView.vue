@@ -32,7 +32,7 @@
               <span v-if="item.is_enabled === 1" class="text-success">
                 啟用
               </span>
-              <span v-else class="text-muted">未起用</span>
+              <span v-else class="text-muted">未啟用</span>
             </td>
             <td class="text-nowrap">
               <div class="btn-group">
