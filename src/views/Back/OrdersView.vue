@@ -129,8 +129,8 @@ export default {
       this.$http
         .put(url, { data: paid })
         .then((res) => {
-          this.isLoading = false
           this.getOrders(this.currentPage)
+          this.isLoading = false
           this.$httpMessageState(res, '更新付款狀態')
         })
         .catch((err) => {

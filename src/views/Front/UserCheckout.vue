@@ -92,8 +92,8 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/order/${this.orderId}`
       this.isLoading = true
       this.$http.get(url).then((res) => {
-        this.isLoading = false
         this.order = res.data.order
+        this.isLoading = false
       }).catch((err) => {
         this.isLoading = false
         this.emitter.emit('push-message', {

@@ -66,19 +66,13 @@
 export default {
   data() {
     return {
-      favorite: [],
-      favoriteID: [],
+      favorite: JSON.parse(localStorage.getItem('favorite')) || [],
+      favoriteID: JSON.parse(localStorage.getItem('favoriteID')) || [],
       isLoading: false
     }
   },
   inject: ['emitter'],
   methods: {
-    getFavorite() {
-      this.isLoading = true
-      this.favorite = JSON.parse(localStorage.getItem('favorite'))
-      this.favoriteID = JSON.parse(localStorage.getItem('favoriteID'))
-      this.isLoading = false
-    },
     addCart(id) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart`
       this.isLoading = true
@@ -107,11 +101,9 @@ export default {
         })
     },
     removeFavorite(item) {
-      this.isLoading = true
-      const temp = this.favoriteID.indexOf(item.id)
-      this.favorite.splice(temp, 1)
-      this.favoriteID.splice(temp, 1)
-      this.isLoading = false
+      const isSave = this.favoriteID.indexOf(item.id)
+      this.favorite.splice(isSave, 1)
+      this.favoriteID.splice(isSave, 1)
       this.emitter.emit('push-message', {
         style: 'danger',
         title: `已將${item.title}移除收藏`
@@ -119,11 +111,7 @@ export default {
       localStorage.setItem('favorite', JSON.stringify(this.favorite))
       localStorage.setItem('favoriteID', JSON.stringify(this.favoriteID))
       this.emitter.emit('update-favorite')
-      this.getFavorite()
     }
-  },
-  mounted() {
-    this.getFavorite()
   }
 }
 </script>

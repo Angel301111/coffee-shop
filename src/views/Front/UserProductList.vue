@@ -98,9 +98,9 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          this.isLoading = false
           this.products = res.data.products
           this.allProducts = [...this.products]
+          this.isLoading = false
           this.sumProductsCategory()
           if (this.$route.query.data) {
             this.selectedCategory(this.$route.query.data)
@@ -161,18 +161,15 @@ export default {
         })
     },
     addToFavorite(item) {
-      this.isLoading = true
       const isSave = this.favoriteID.indexOf(item.id)
       if (isSave === -1) {
         this.favorite.push(item)
         this.favoriteID.push(item.id)
-        this.isLoading = false
         this.emitter.emit('push-message', {
           style: 'success',
           title: `已將${item.title}新增至收藏`
         })
       } else {
-        this.isLoading = false
         this.favorite.splice(isSave, 1)
         this.favoriteID.splice(isSave, 1)
         this.emitter.emit('push-message', {

@@ -174,8 +174,8 @@ export default {
       this.$http
         .get(api)
         .then((res) => {
-          this.isLoading = false
           this.product = res.data.product
+          this.isLoading = false
         })
         .catch((err) => {
           this.isLoading = false
@@ -191,9 +191,9 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          this.isLoading = false
           this.products = res.data.products
           this.allProducts = [...this.products]
+          this.isLoading = false
         })
         .catch((err) => {
           this.isLoading = false

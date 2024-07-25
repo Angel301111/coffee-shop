@@ -111,8 +111,8 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          this.isLoading = false
           this.coupons = res.data.coupons
+          this.isLoading = false
         })
         .catch((err) => {
           this.isLoading = false

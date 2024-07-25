@@ -261,8 +261,8 @@ export default {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/products/all`
       this.isLoading = true
       this.$http.get(url).then((res) => {
-        this.isLoading = false
         this.products = res.data.products
+        this.isLoading = false
       }).catch((err) => {
         emitter.emit('push-message', {
           style: 'danger',

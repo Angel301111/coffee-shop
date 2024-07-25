@@ -201,8 +201,8 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          this.isLoading = false
           this.cart = res.data.data
+          this.isLoading = false
         })
         .catch((err) => {
           this.isLoading = false
@@ -228,8 +228,8 @@ export default {
     },
     updateCart(item) {
       const url = `${process.env.VUE_APP_API}api/${process.env.VUE_APP_PATH}/cart/${item.id}`
-      this.isLoading = true
       this.status.loadingItem = item.id
+      this.isLoading = true
       const cart = {
         data: {
           product_id: item.product_id,

@@ -95,10 +95,10 @@ export default {
       this.$http
         .get(url)
         .then((res) => {
-          this.isLoading = false
           this.products = res.data.products
           this.pagination = res.data.pagination
           this.currentPage = res.data.pagination.current_page
+          this.isLoading = false
         })
         .catch((err) => {
           this.isLoading = false
